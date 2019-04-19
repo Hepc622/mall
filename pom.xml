@@ -6,7 +6,20 @@
 
     <groupId>org.github</groupId>
     <artifactId>mall</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>mall-gateway</module>
+        <module>mall-eureka</module>
+        <module>mall-zipkin</module>
+        <module>mall-monitor</module>
+        <module>mall-config</module>
+        <module>mall-auth</module>
+        <module>mall-services</module>
+        <module>mall-common</module>
+        <module>mall-services-common</module>
+        <module>mall-job</module>
+    </modules>
 
 
 </project>
