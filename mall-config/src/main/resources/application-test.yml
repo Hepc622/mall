@@ -1,0 +1,27 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+#    配置中心相关配置
+  cloud:
+    config:
+      server:
+        git:
+#          git url
+          uri: https://github.com/Hepc622/mall-config/
+#         配置目录
+          searchPaths: configs
+#         分支
+      label: master
+#     账户密码配置
+#      git:
+#        username:
+#        password:
+
+# 注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
