@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 8762
 
 spring:
   application:
@@ -10,7 +10,7 @@ spring:
       server:
         git:
 #          git url
-          uri: https://github.com/Hepc622/mall-config/
+          uri: https://github.com/Hepc622/mall-config
 #         配置目录
           searchPaths: configs
 #         分支

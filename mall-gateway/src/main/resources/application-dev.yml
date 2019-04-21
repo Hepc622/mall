@@ -1,0 +1,41 @@
+server:
+  port: 8763
+
+spring:
+  application:
+    name: config
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+#          转发到权限验证服务
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:8764/oauth/token
+      user-authorization-uri: http://localhost:8764/oauth/authorize
+      client-id: webapp
+    resource:
+      user-info-uri: http://localhost:8080/uaa/user
+      prefer-token-info: false
+#      routes:
+#        - id: service-hi
+#          uri: lb://SERVICE-HI
+#          predicates:
+#            - Path=/demo/**
+#          filters:
+#            - StripPrefix=1
+
+#  spring.cloud.config.discovery.locator.enabled为true，
+#  表明gateway开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，
+#  这个router将以服务名开头的请求路径转发到对应的服务。
+#  spring.cloud.config.discovery.locator.lowerCaseServiceId是将请求路径上的服务名配置为小写
+#  （因为服务注册的时候，向注册中心注册时将服务名转成大写的了），比如以/service-hi/*的请求路径被路由转发到服务名为service-hi的服务上
+
+# 自定义路由
+# 将自动生成路由改为false,然后配置router即可
+
+# 所有获取过滤器的父类 GlobalFilter,Order
+# 所有predicate的父类 AbstractRoutePredicateFactory

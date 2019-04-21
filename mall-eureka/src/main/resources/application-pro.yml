@@ -1,13 +1,37 @@
+# 注册中心高可用，使用3台互备方式，client连3台
 server:
   port: 8761
 eureka:
   instance:
-    hostname: reg-001.inner.jinrinsh.com
+    hostname: 192.168.0.1
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://192.168.0.2:${server.port}/eureka,http://192.168.0.3:${server.port}/eureka
+
+---
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: 192.168.0.2
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://192.168.0.1:${server.port}/eureka,http://192.168.0.3:${server.port}/eureka
+---
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: 192.168.0.3
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://192.168.0.1:${server.port}/eureka,http://192.168.0.2:${server.port}/eureka
 
 
 

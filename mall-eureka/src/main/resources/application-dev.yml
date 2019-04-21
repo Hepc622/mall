@@ -4,10 +4,9 @@ eureka:
   instance:
     hostname: localhost
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
 
-logging:
-  path: classpath:logback-spring.xml
+# 默认值为resource 下的 logback-spring.xml文件
+#logging:
+#  path: classpath:logback-spring.xml
