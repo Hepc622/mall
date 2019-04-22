@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mall-services-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mall-service-user-common</module>
+    </modules>
 
 
 </project>
