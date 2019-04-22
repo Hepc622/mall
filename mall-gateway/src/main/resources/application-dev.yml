@@ -10,6 +10,13 @@ spring:
         locator:
           enabled: true
           lowerCaseServiceId: true
+
+# 注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
 #          转发到权限验证服务
 security:
   oauth2:
