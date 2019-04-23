@@ -39,22 +39,73 @@
         <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
         <xxl-job.version>2.0.2</xxl-job.version>
         <servlet.version>4.0.1</servlet.version>
+        <hystrix-dashboard.version>1.4.4.RELEASE</hystrix-dashboard.version>
+        <turbine.version>1.4.4.RELEASE</turbine.version>
+        <hystrix.version>1.4.4.RELEASE</hystrix.version>
     </properties>
     <dependencies>
+        <!--eureka client start -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <!--eureka client end -->
 
+        <!-- feign start-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!-- feign end-->
 
+        <!--config start 配置客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
+        <!--config end 配置客户端-->
+
+        <!--断路器 start client 降级依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+        <!--断路器 end -->
+
+        <!--断路信息收集 start 这将使/hystrix.stream作为管理端点。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>2.1.2.RELEASE</version>
+        </dependency>
+        <!--断路信息收集 end 这将使/hystrix.stream作为管理端点。-->
+
+        <!--链路sleuth 依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <!--链路sleuth end -->
+
+        <!--zipkin start-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+        <!--链路调用信息收集依赖 start -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
+        </dependency>
+
+        <!--mq形式采集-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.cloud</groupId>-->
+        <!--<artifactId>spring-cloud-starter-stream-rabbit</artifactId>-->
+        <!--</dependency>-->
+
+        <!--zipkin end -->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -63,6 +114,11 @@
     </dependencies>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
             <!--spring cloud start-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -77,13 +133,12 @@
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
-            <!--web start-->
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
-            <!--web end-->
 
             <!--lombok start-->
             <dependency>
@@ -132,6 +187,31 @@
                 <version>${xxl-job.version}</version>
             </dependency>
             <!--xxl-job core end-->
+
+            <!--断路器 start-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+                <version>${hystrix.version}</version>
+            </dependency>
+            <!--断路器 end-->
+
+            <!--hystrix-dashboard start 熔断仪表盘-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+                <version>${hystrix-dashboard.version}</version>
+            </dependency>
+            <!--hystrix-dashboard end-->
+
+            <!--turbine start 收集每个client的熔断信息-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-turbine</artifactId>
+                <version>${turbine.version}</version>
+            </dependency>
+            <!--turbine end-->
+
             <!--gson start-->
             <dependency>
                 <groupId>com.google.code.gson</groupId>

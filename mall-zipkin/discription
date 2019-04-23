@@ -1,0 +1,13 @@
+关于 Zipkin 的服务端，在使用 Spring Boot 2.x 版本后，
+官方就不推荐自行定制编译了，官方直接提供了编译好的 jar 包来给我们使用，
+详情请看 upgrade to Spring Boot 2.0 NoClassDefFoundError UndertowEmbeddedServletContainerFactory · Issue #1962 · openzipkin/zipkin · GitHub
+
+curl -sSL https://zipkin.io/quickstart.sh | bash -s
+
+服务启动
+java -jar zipkin.jar --STORAGE_TYPE=mysql --MYSQL_HOST=localhost --MYSQL_TCP_PORT=3306 --MYSQL_DB=mall-zipkin --MYSQL_USER=root --MYSQL_PASS=
+--------------------- 
+作者：Aslan丿 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_29534483/article/details/82586631 
+版权声明：本文为博主原创文章，转载请附上博文链接！
