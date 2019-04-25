@@ -1,10 +1,7 @@
 package com.github.mall.rpc;
 
 import com.github.mall.service.user.rpc.ServiceUserApi;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 描述:
@@ -17,8 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserRpc implements ServiceUserApi {
 
-    @PostMapping("/getUser")
+    @GetMapping("/getUser")
     public void getUserWithId(@RequestBody Long userId) {
+        System.out.println("111111111111111");
+    }
+    @GetMapping("/getUser2")
+    public void getUserWithId() {
         System.out.println("111111111111111");
     }
 }

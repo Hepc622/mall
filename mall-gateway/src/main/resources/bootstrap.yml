@@ -1,17 +1,10 @@
-#spring:
-#  application:
-#    name: gateway
-#  cloud:
-#    config:
-#      label: master
-#      profile: pro
-#      discovery:
-#        enabled: true
-#        service-id: config-server
-#
-## 注册到eureka
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka
-##      defaultZone: http://localhost:8761/eureka,http://192.168.0.2:8761/eureka,http://192.168.0.3:8761/eureka
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: config-server
