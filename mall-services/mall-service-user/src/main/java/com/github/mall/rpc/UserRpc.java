@@ -19,6 +19,6 @@ public class UserRpc implements ServiceUserApi {
 
     @PostMapping("/getUser")
     public void getUserWithId(@RequestBody Long userId) {
-
+        System.out.println("111111111111111");
     }
 }

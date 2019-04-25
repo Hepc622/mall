@@ -3,14 +3,7 @@ server:
 
 spring:
   application:
-    name: config
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lowerCaseServiceId: true
-
+    name: gateway
 # 注册中心
 eureka:
   client:
@@ -27,13 +20,13 @@ security:
     resource:
       user-info-uri: http://localhost:8080/uaa/user
       prefer-token-info: false
-#      routes:
-#        - id: service-hi
-#          uri: lb://SERVICE-HI
-#          predicates:
-#            - Path=/demo/**
-#          filters:
-#            - StripPrefix=1
+      routes:
+        - id: service-hi
+          uri: lb://SERVICE-HI
+          predicates:
+            - Path=/demo/**
+          filters:
+            - StripPrefix=1
 
 #  spring.cloud.config.discovery.locator.enabled为true，
 #  表明gateway开启服务注册和发现的功能，并且spring cloud gateway自动根据服务发现为每一个服务创建了一个router，
