@@ -5,7 +5,17 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-job/mall-job-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-job/mall-job-executor/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-services-common/mall-service-product-common/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/mall-job/mall-job-core/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-job/xxl-job-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/mall-job/xxl-job-core/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">

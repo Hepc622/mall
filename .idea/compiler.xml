@@ -6,8 +6,40 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mall" />
+        <module name="mall-auth" />
+        <module name="mall-common" />
+        <module name="mall-config" />
+        <module name="mall-eureka" />
+        <module name="mall-fescar" />
+        <module name="mall-gateway" />
+        <module name="mall-job-admin" />
+        <module name="mall-job-executor" />
+        <module name="mall-monitor" />
+        <module name="mall-service-product" />
+        <module name="mall-service-product-common" />
+        <module name="mall-service-user" />
+        <module name="mall-service-user-common" />
+        <module name="mall-zipkin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mall-job-core" target="7" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mall-auth" options="" />
+      <module name="mall-common" options="" />
+      <module name="mall-config" options="" />
+      <module name="mall-eureka" options="" />
+      <module name="mall-gateway" options="" />
+      <module name="mall-job" options="" />
+      <module name="mall-job-admin" options="" />
+      <module name="mall-job-executor" options="" />
+      <module name="mall-monitor" options="" />
+      <module name="mall-service-user" options="" />
+      <module name="mall-service-user-common" options="" />
+      <module name="mall-zipkin" options="" />
+    </option>
   </component>
 </project>
