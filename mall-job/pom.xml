@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mall-job</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mall-job-executor</module>
+        <module>mall-job-admin</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -17,4 +22,12 @@
             <artifactId>xxl-job-core</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

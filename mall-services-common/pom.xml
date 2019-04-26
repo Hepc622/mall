@@ -12,6 +12,7 @@
     <artifactId>mall-services-common</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>mall-service-product-common</module>
         <module>mall-service-user-common</module>
     </modules>
 

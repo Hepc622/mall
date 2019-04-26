@@ -19,6 +19,7 @@
         <module>mall-common</module>
         <module>mall-services-common</module>
         <module>mall-job</module>
+        <module>mall-fescar</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,7 +30,7 @@
         <mapper.version>3.4.0</mapper.version>
         <mysql.version>5.1.39</mysql.version>
         <fastjson.version>1.2.29</fastjson.version>
-        <mybatis-plus.version>2.3</mybatis-plus.version>
+        <mybatis-plus.version>3.1.1</mybatis-plus.version>
         <lcn.last.version>4.1.0</lcn.last.version>
         <redisson.version>3.10.3</redisson.version>
         <spring-boot-admin.version>1.5.7</spring-boot-admin.version>
@@ -42,6 +43,7 @@
         <hystrix-dashboard.version>1.4.4.RELEASE</hystrix-dashboard.version>
         <turbine.version>1.4.4.RELEASE</turbine.version>
         <hystrix.version>1.4.4.RELEASE</hystrix.version>
+        <seata.version>0.5.0</seata.version>
     </properties>
     <dependencies>
         <!--eureka client start -->
@@ -103,6 +105,25 @@
                 <version>${lombok.version}</version>
             </dependency>
             <!--lombok end-->
+
+            <!--分布式事务 fescar start-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-seata</artifactId>
+                <version>0.9.0.RELEASE</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.seata</groupId>
+                        <artifactId>seata-spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring</artifactId>
+                <version>${seata.version}</version>
+            </dependency>
+            <!--分布式事务 fescar end-->
 
             <!--mybatis-plus start -->
             <dependency>
@@ -176,6 +197,13 @@
             </dependency>
             <!--gson end-->
 
+            <!--内部依赖 start-->
+            <dependency>
+                <groupId>org.github</groupId>
+                <artifactId>mall-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!--内部依赖 end-->
         </dependencies>
     </dependencyManagement>
     <build>

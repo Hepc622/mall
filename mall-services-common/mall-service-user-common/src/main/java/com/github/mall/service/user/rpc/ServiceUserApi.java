@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author HPC
  * @create 2019-04-22
  */
-@FeignClient(value = "SERVICE-USER", path = "/user", fallback = ServiceUserApiFallBack.class)
+@FeignClient(value = "SERVICE-USER", path = "/user/rpc", fallback = ServiceUserApiFallBack.class)
 @Service
 public interface ServiceUserApi {
     @PostMapping("/getUser")

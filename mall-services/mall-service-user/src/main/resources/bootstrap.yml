@@ -1,6 +1,7 @@
 spring:
   application:
-    name: user,common
+#   按顺序覆盖，多个一样的配置，后者覆盖前者后面优先级最高
+    name: common,user
   cloud:
     config:
       label: master
