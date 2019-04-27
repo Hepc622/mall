@@ -19,7 +19,7 @@
         <module>mall-common</module>
         <module>mall-services-common</module>
         <module>mall-job</module>
-        <module>mall-fescar</module>
+        <module>mall-transaction-manager</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,7 +43,7 @@
         <hystrix-dashboard.version>1.4.4.RELEASE</hystrix-dashboard.version>
         <turbine.version>1.4.4.RELEASE</turbine.version>
         <hystrix.version>1.4.4.RELEASE</hystrix.version>
-        <seata.version>0.5.0</seata.version>
+        <codingapi.txlcn.version>5.0.2.RELEASE</codingapi.txlcn.version>
     </properties>
     <dependencies>
         <!--eureka client start -->
@@ -106,25 +106,6 @@
             </dependency>
             <!--lombok end-->
 
-            <!--分布式事务 fescar start-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-seata</artifactId>
-                <version>0.9.0.RELEASE</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.seata</groupId>
-                        <artifactId>seata-spring</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>io.seata</groupId>
-                <artifactId>seata-spring</artifactId>
-                <version>${seata.version}</version>
-            </dependency>
-            <!--分布式事务 fescar end-->
-
             <!--mybatis-plus start -->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -164,6 +145,26 @@
                 <version>${xxl-job.version}</version>
             </dependency>
             <!--xxl-job core end-->
+            <!--lcn start -->
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tc</artifactId>
+                <version>${codingapi.txlcn.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tm</artifactId>
+                <version>${codingapi.txlcn.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-txmsg-netty</artifactId>
+                <version>${codingapi.txlcn.version}</version>
+            </dependency>
+            <!--lcn ends -->
 
             <!--断路器 start-->
             <dependency>

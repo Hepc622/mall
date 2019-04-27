@@ -20,16 +20,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--fescar start-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-seata</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-spring</artifactId>
-        </dependency>
-        <!--fescar end-->
         <!--mybatis start -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -44,6 +34,17 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <!--mybatis end -->
+        <!--lcn client start-->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+        </dependency>
+        <!--lcn client end-->
 
         <dependency>
             <groupId>org.github</groupId>

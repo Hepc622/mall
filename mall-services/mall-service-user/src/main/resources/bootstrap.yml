@@ -1,7 +1,7 @@
 spring:
   application:
 #   按顺序覆盖，多个一样的配置，后者覆盖前者后面优先级最高
-    name: common,user
+    name: common-datasource,common-eureka,user
   cloud:
     config:
       label: master

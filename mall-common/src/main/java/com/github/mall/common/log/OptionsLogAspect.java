@@ -62,7 +62,7 @@ public class OptionsLogAspect {
         String methodName = point.getSignature().getName();
         /*获取请求参数*/
         Object object = commonData(point);
-        log.info("start>>>>>>>【scheme:{},port:{},url:{},method:{},in_params:{}】", scheme, serverPort, requestPath, methodName, object.toString());
+        log.info("start>>>>>>>【scheme:{},port:{},url:{},method:{},in_params:{}】", scheme, serverPort, requestPath, methodName, object==null?"":object.toString());
     }
 
     /**

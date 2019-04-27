@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author HPC
  * @create 2019-04-22
  */
-@FeignClient(value = "SERVICE-PRODUCT", path = "/user", fallback = ServiceProductApiFallBack.class)
+@FeignClient(value = "SERVICE-PRODUCT", path = "/product/rpc", fallback = ServiceProductApiFallBack.class)
 @Service
 public interface ServiceProductApi {
     @PostMapping("/getProduct")
