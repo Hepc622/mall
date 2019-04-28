@@ -2,7 +2,7 @@
 #  application:
 #    name: zipkin
 #  cloud:
-#    config:
+#    mybatis:
 #      label: master
 #      profile: pro
 #      discovery:

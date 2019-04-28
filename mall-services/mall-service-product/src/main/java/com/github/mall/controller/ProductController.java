@@ -1,10 +1,15 @@
 package com.github.mall.controller;
 
+import com.alibaba.fescar.core.context.RootContext;
+import com.alibaba.fescar.spring.annotation.GlobalTransactional;
+import com.github.mall.common.fastdfs.csource.util.FastDFSClient;
 import com.github.mall.entity.Product;
 import com.github.mall.service.IProductService;
 import com.github.mall.service.user.rpc.ServiceUserApi;
+import org.redisson.api.RMap;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,12 +31,20 @@ public class ProductController {
     private ServiceUserApi serviceUserApi;
     @Autowired
     private IProductService productService;
+    @Autowired
+    private RedissonClient redissonClient;
 
-    @PostMapping("/test/{id}")
-    public void test(@PathVariable("id") Long id) {
+    @PostMapping("/test")
+    @GlobalTransactional
+    @Transactional
+    public void test() {
+
+        RMap<Object, Object> map = redissonClient.getMap("");
+        String xid = RootContext.getXID();
+        System.out.println(xid);
         Product product = productService.getById(1);
         product.setProPrice(product.getProPrice().subtract(new BigDecimal(1)));
         productService.updateById(product);
-        serviceUserApi.getUserWithId(id);
+        serviceUserApi.getUserWithId();
     }
 }

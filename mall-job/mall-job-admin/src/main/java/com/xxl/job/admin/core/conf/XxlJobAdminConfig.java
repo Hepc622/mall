@@ -13,7 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import javax.annotation.Resource;
 
 /**
- * xxl-job config
+ * xxl-job mybatis
  *
  * @author xuxueli 2017-04-28
  */

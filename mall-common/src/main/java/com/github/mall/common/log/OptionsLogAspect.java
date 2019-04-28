@@ -10,6 +10,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -96,11 +97,7 @@ public class OptionsLogAspect {
         Object result = null;
         // 前置
         beforeMethod(pjp);
-        try {
-            result = pjp.proceed();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = pjp.proceed();
         afterMethod(result,pjp);
         return result;
     }

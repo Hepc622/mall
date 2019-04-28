@@ -14,7 +14,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableEurekaClient
 @EnableFeignClients
 public class AuthServerApplication {
     public static void main(String[] args) {

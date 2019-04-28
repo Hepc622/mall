@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServiceUserApiFallBack implements ServiceUserApi {
-    public void getUserWithId(Long userId) {
+    public void getUserWithId() {
     }
 }

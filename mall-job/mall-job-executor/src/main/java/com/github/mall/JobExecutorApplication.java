@@ -13,7 +13,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author HPC
  * @create 2019-04-20
  */
-@EnableEurekaClient
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients

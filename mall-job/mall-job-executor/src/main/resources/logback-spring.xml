@@ -6,7 +6,7 @@
 
     <!-- log args -->
     <property name="LOG_FILE" value="./logs/${springAppName}.log"/>
-    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} [${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{X-Span-Export:-}] ${PID:-} --- [%15.15t] %-40.40logger{40} : %m%n"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [${springAppName}] ${LOG_LEVEL_PATTERN}  ${PID} --- [%15.15t] %-40.40logger{40} : %m%n"/>
 
     <!-- Appender to log to console -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">

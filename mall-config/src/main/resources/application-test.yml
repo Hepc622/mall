@@ -3,14 +3,14 @@ server:
 
 spring:
   application:
-    name: config-server
+    name: mybatis-server
 #    配置中心相关配置
   cloud:
     config:
       server:
         git:
 #          git url
-          uri: https://github.com/Hepc622/mall-config/
+          uri: https://github.com/Hepc622/mall-mybatis/
 #         配置目录
           searchPaths: configs
 #         分支

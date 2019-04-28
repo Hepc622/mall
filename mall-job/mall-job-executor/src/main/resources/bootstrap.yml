@@ -7,4 +7,4 @@ spring:
       profile: dev
       discovery:
         enabled: true
-        service-id: config-server
+        service-id: mybatis-server

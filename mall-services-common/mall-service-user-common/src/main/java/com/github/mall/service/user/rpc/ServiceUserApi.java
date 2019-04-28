@@ -17,5 +17,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Service
 public interface ServiceUserApi {
     @PostMapping("/getUser")
-    void getUserWithId(@RequestBody Long userId);
+    void getUserWithId();
 }

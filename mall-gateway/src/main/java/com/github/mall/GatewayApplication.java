@@ -12,7 +12,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @author HPC
  * @create 2019-04-20
  */
-@EnableEurekaClient
 @EnableDiscoveryClient
 @SpringBootApplication
 public class GatewayApplication {

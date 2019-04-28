@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import javax.annotation.Resource;
 
 /**
- * web mvc config
+ * web mvc mybatis
  *
  * @author xuxueli 2018-04-02 20:48:20
  */

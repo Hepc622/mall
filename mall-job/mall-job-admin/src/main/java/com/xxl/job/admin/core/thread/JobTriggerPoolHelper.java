@@ -117,7 +117,7 @@ public class JobTriggerPoolHelper {
      * @param triggerType
      * @param failRetryCount
      * 			>=0: use this param
-     * 			<0: use param from job info config
+     * 			<0: use param from job info mybatis
      * @param executorShardingParam
      * @param executorParam
      *          null: use job param
