@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mall-product</artifactId>
+    <artifactId>mall-service-product</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.github</groupId>
