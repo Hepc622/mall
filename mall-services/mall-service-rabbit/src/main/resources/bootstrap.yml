@@ -1,0 +1,13 @@
+#spring:
+#  cloud:
+#    config:
+#      name: common-datasource,common-eureka,rabbit
+#      label: master
+#      profile: dev
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+#
+#    alibaba:
+#      seata:
+#        tx-service-group: mall_tx_group
