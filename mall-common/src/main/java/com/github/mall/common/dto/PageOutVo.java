@@ -22,18 +22,18 @@ import java.io.Serializable;
 public class PageOutVo<T> implements Serializable{
     private static final long serialVersionUID = -8201439966090055097L;
 
-//    @ApiModelProperty("当前页")
+    /*当前页数*/
     private Integer pageNo;
 
-//    @ApiModelProperty("每页条数")
+    /*页面数据大小*/
     private Integer pageSize;
 
-//    @ApiModelProperty("总条数")
+    /*总条数*/
     private Long total;
 
-//    @ApiModelProperty("总页数")
+    /*总页数*/
     private Long pages;
 
-//    @ApiModelProperty("数据集")
+    /*返回的数据*/
     private T list;
 }

@@ -15,10 +15,10 @@ public class PageInVo implements Serializable {
 
     private static final long serialVersionUID = -2193105092392981877L;
 
-//    @ApiModelProperty("当前第几页")
+    /*当前页数*/
     private Integer pageNo = 1;
 
-//    @ApiModelProperty("每页条数")
+    /*页面数据条数*/
     private Integer pageSize = 10;
 
 
