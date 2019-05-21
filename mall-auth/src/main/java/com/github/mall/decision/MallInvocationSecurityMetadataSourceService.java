@@ -34,8 +34,8 @@ public class MallInvocationSecurityMetadataSourceService implements
      */
     public void loadResourceDefine() {
         map = new HashMap<>();
-        Collection<ConfigAttribute> array;
-        ConfigAttribute cfg;
+        Collection<ConfigAttribute> collection;
+        ConfigAttribute configAttribute;
 //        List<Permission> permissions = permissionDao.findAll();
 //        for(Permission permission : permissions) {
 //            array = new ArrayList<>();

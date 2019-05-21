@@ -1,5 +1,6 @@
 package com.github.mall.common.exception;
 
+import com.github.mall.common.dto.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -7,8 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
+import java.nio.file.AccessDeniedException;
 
 /**
  * 描述:
@@ -22,14 +22,14 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
-    public Map defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    public Result defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         log.info("=====================全局异常信息捕获=======================");
         log.info(ex.getMessage(), ex);
-        HashMap<String, Object> map = new HashMap<>(3);
-        map.put("code", "1000");
-        map.put("msg", "系统繁忙");
-        map.put("data", ex.getMessage());
-        return map;
+        if (ex instanceof AccessDeniedException) {
+            return Result.noRight(ex);
+        } else {
+            return Result.fail();
+        }
     }
 }

@@ -60,7 +60,14 @@ public class Result<T> implements Serializable {
         return new Result<>(code, msg, null);
     }
 
+
     public static <T> Result<T> fail(String code, String msg, T obj) {
         return new Result<>(code, msg, obj);
     }
+
+    public static <T> Result<T> noRight(T e) {
+        return new Result<>(Code.NO_RIGHT, "没有操作权限", e);
+    }
+
+
 }
