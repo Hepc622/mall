@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mall-auth</artifactId>
+    <artifactId>mall-service-auth</artifactId>
 
     <dependencies>
         <dependency>
