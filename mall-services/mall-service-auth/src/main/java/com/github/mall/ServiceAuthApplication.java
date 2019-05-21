@@ -3,20 +3,22 @@ package com.github.mall;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 /**
- * 描述: 验证服务
+ * 描述:
+ * 验证服务
  *
  * @author HPC
- * @create 2019-04-21
+ * @create 2019-04-29
  */
-@SpringBootApplication
 @EnableDiscoveryClient
+@SpringBootApplication
 @EnableFeignClients
-public class AuthServerApplication {
+@EnableResourceServer
+public class ServiceAuthApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AuthServerApplication.class, args);
+        SpringApplication.run(ServiceAuthApplication.class, args);
     }
 }

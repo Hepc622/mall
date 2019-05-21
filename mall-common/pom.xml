@@ -21,6 +21,22 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resource</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                    <include>**/*.cer</include>
+                    <include>**/*.txt</include>
+                    <include>**/*.sm2</include>
+                    <include>**/*.keystore</include>
+                    <include>**/*.jks</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
