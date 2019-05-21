@@ -35,8 +35,8 @@ public class MallAccessDecisionManager implements AccessDecisionManager {
         }
         ConfigAttribute c;
         String needRole;
-        for (Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext(); ) {
-            c = iter.next();
+        for (ConfigAttribute configAttribute : configAttributes) {
+            c = configAttribute;
             needRole = c.getAttribute();
             for (GrantedAuthority ga : authentication.getAuthorities()) {//authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
                 if (needRole.trim().equals(ga.getAuthority())) {
