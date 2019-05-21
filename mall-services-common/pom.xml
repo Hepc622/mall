@@ -11,6 +11,12 @@
 
     <artifactId>mall-services-common</artifactId>
     <packaging>pom</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
     <modules>
         <module>mall-service-product-common</module>
         <module>mall-service-user-common</module>

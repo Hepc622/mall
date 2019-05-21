@@ -25,8 +25,8 @@ import java.math.BigDecimal;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
-    @Autowired
-    private ServiceUserApi serviceUserApi;
+//    @Autowired
+//    private ServiceUserApi serviceUserApi;
     @Autowired
     private IProductService productService;
     @Autowired
@@ -43,6 +43,6 @@ public class ProductController {
         Product product = productService.getById(1);
         product.setProPrice(product.getProPrice().subtract(new BigDecimal(1)));
         productService.updateById(product);
-        serviceUserApi.getUserWithId();
+//        serviceUserApi.getUserWithId();
     }
 }

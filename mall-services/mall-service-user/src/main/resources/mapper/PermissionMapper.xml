@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.mall.user.mapper.PermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.github.mall.service.user.model.Permission">
+        <id column="id" property="id" />
+        <result column="discription" property="discription" />
+        <result column="url" property="url" />
+        <result column="create_tm" property="createTm" />
+        <result column="update_tm" property="updateTm" />
+        <result column="create_id" property="createId" />
+        <result column="update_id" property="updateId" />
+    </resultMap>
+
+</mapper>

@@ -1,10 +1,11 @@
 package com.github.mall.user.rpc;
 
-import com.alibaba.fescar.core.context.RootContext;
-import com.github.mall.user.entity.User;
+import com.github.mall.common.dto.Result;
+import com.github.mall.service.user.model.User;
 import com.github.mall.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,17 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user/rpc")
 @Transactional(rollbackFor = Exception.class)
-public class UserRpc implements ServiceUserApi {
+public class UserRpc {
     @Autowired
     private IUserService userService;
 
-    @PostMapping("/getUser")
-    public void getUserWithId() {
-        String xid = RootContext.getXID();
-        System.out.println(xid);
-        User user = userService.getById(1);
-        user.setUserAge(user.getUserAge() - 1);
-        userService.updateById(user);
-        int x = 1 / 0;
+    /**
+     * 通过参数获取user
+     * @param param openId userId phoneNo email
+     * @return
+     */
+    @PostMapping("/getUser/{param}")
+    public Result<User> getUserWithParam(@PathVariable("param") String param) {
+        return userService.getUserWithParam(param);
     }
+
 }

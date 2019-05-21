@@ -1,6 +1,7 @@
 package com.github.mall.user.service;
 
-import com.github.mall.user.entity.User;
+import com.github.mall.common.dto.Result;
+import com.github.mall.service.user.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
+    Result<User> getUserWithParam(String param);
 }

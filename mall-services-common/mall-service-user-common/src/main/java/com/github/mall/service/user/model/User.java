@@ -1,4 +1,4 @@
-package com.github.mall.user.entity;
+package com.github.mall.service.user.model;
 
 import java.io.Serializable;
 
@@ -29,17 +29,36 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    private String userName;
+    private String name;
 
     /**
      * 年龄
      */
-    private Integer userAge;
+    private Integer age;
 
     /**
      * 性别
      */
-    private String userSex;
+    private String sex;
 
+    /**
+     * 手机号码
+     */
+    private String phone;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 创建时间
+     */
+    private String createTm;
+
+    /**
+     * 更新时间
+     */
+    private String updateTm;
 
 }
