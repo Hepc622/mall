@@ -1,8 +1,6 @@
 package com.github.mall.common.mybatis;
 
 
-import com.baomidou.mybatisplus.core.injector.ISqlInjector;
-import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
@@ -34,22 +32,19 @@ public class MybatisPlusConfig {
         return new PaginationInterceptor();
     }
 
-
-    @Bean
-    public ISqlInjector sqlInjector() {
-        return new LogicSqlInjector();
-    }
-
     /**
      * 打印sql
+     *
      * @return
      */
     @Bean
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
         // 格式化sql语句
-        Properties properties = new Properties(); properties.setProperty("format", "true");
-        performanceInterceptor.setProperties(properties); return performanceInterceptor;
+        Properties properties = new Properties();
+        properties.setProperty("format", "true");
+        performanceInterceptor.setProperties(properties);
+        return performanceInterceptor;
     }
 
 }

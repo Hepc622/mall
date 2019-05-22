@@ -27,7 +27,7 @@ import java.io.IOException;
  * each 6-bits gets translated to an encoded printable ASCII character, via a
  * table lookup.  An encoded string is therefore longer than the original by
  * about 1/3.  The "=" character is used to pad the end.  Base64 is used,
- * among other things, to encode the user:password string in an
+ * among other things, to encode the product:password string in an
  * Authorization: header for HTTP.  Don't confuse Base64 with
  * x-www-form-urlencoded which is handled by
  * Java.net.URLEncoder.encode/decode

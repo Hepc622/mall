@@ -1,7 +1,7 @@
 spring:
   cloud:
     config:
-      name: common-datasource,common-eureka,user
+      name: common-datasource,common-eureka,product
       label: master
       profile: dev
       discovery:
