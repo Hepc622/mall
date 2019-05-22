@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.mall.product.mapper.PermissionMapper">
+<mapper namespace="com.github.mall.user.mapper.PermissionMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.github.mall.product.model.Permission">
+    <resultMap id="BaseResultMap" type="com.github.mall.user.model.Permission">
         <id column="id" property="id" />
         <result column="discription" property="discription" />
         <result column="url" property="url" />

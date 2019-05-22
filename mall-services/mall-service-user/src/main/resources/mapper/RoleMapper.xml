@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.mall.product.mapper.RoleMapper">
+<mapper namespace="com.github.mall.user.mapper.RoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.github.mall.product.model.Role">
-        <id column="id" property="id" />
-        <result column="role_name" property="roleName" />
-        <result column="create_tm" property="createTm" />
-        <result column="update_tm" property="updateTm" />
-        <result column="create_id" property="createId" />
-        <result column="update_id" property="updateId" />
+    <resultMap id="BaseResultMap" type="com.github.mall.user.model.Role">
+        <id column="id" property="id"/>
+        <result column="role_name" property="roleName"/>
+        <result column="create_tm" property="createTm"/>
+        <result column="update_tm" property="updateTm"/>
+        <result column="create_id" property="createId"/>
+        <result column="update_id" property="updateId"/>
     </resultMap>
+    <!--通过用户ID获取用户角色-->
+    <select id="getUserRole" resultType="com.github.mall.user.model.Role">
+        select a.*
+        from role a right join user_role b
+        on b.role_id=a.id
+        where a.user_id=#{userId}
+    </select>
 
 </mapper>

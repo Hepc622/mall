@@ -71,5 +71,5 @@ security:
       userAuthorizationUri: https://github.com/login/oauth/authorize
       clientAuthenticationScheme: form
     resource:
-      userInfoUri: https://api.github.com/product
+      userInfoUri: https://api.github.com/user
       preferTokenInfo: false

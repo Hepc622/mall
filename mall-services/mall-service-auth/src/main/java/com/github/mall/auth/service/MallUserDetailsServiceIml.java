@@ -1,6 +1,11 @@
 package com.github.mall.auth.service;
 
 import com.github.mall.common.utils.MallUtils;
+import com.github.mall.user.model.Role;
+import com.github.mall.user.rpc.IRoleRpc;
+import com.github.mall.user.rpc.IUserRpc;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,16 +24,30 @@ import java.util.List;
  */
 @Component
 @Primary
+@Slf4j
 public class MallUserDetailsServiceIml implements UserDetailsService {
+    @Autowired
+    private IUserRpc userRpc;
+
+    @Autowired
+    private IRoleRpc roleRpc;
+
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails userDetails = null;
+        UserDetails userDetails;
 
-        //手机号码登录
-        if (MallUtils.isPhoneLegal(username, true)) {
-            userDetails = loginWithPhoneNo(username);
-        } else {//openId登录
-            userDetails = loginWithOpenId(username);
+        try {
+            //手机号码登录
+            if (MallUtils.isPhoneLegal(username, true)) {
+                userDetails = loginWithPhoneNo(username);
+            } else if (MallUtils.isEmail(username)) {//邮箱登录
+                userDetails = loginWithEmail(username);
+            } else {//openId登录
+                userDetails = loginWithOpenId(username);
+            }
+        } catch (Exception e) {
+            log.error("用户登录抛出异常：" + e.getMessage());
+            return null;
         }
 
         /*判断是否为空*/
@@ -38,28 +56,25 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
         }
 
         /*设置用户权限*/
-        setGrantAuthority(userDetails);
+        setGrantAuthority((MallUserDetails) userDetails);
 
         return userDetails;
     }
 
-    private void setGrantAuthority(UserDetails userDetails) {
-        //TODO 获取用户对应的角色和权限
-        List<String> right = new ArrayList<>();
-        right.add("");
+    /*获取用户权限并且设置权限*/
+    private void setGrantAuthority(MallUserDetails user) {
+        /*获取该用户有的权限*/
+        List<Role> roles = roleRpc.getUserRole(user.getId());
 
+        /*组拼角色*/
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>(roles.size());
+        for (Role vo : roles) {
+            String roleName = vo.getRoleName();
+            grantedAuthorities.add(new SimpleGrantedAuthority(roleName));
+        }
 
-        /*处理权限*/
-        Collection<GrantedAuthority> collection = (Collection<GrantedAuthority>) userDetails.getAuthorities();
-        /*如果等于空就给一个空容器*/
-        if (collection == null) {
-            collection = new ArrayList<>();
-        }
-        /*添加权限*/
-        for (String role : right) {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role);
-            collection.add(grantedAuthority);
-        }
+        /*设置权限*/
+        user.setAuthorities(grantedAuthorities);
     }
 
     /**
@@ -70,7 +85,11 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
      * @return
      */
     private UserDetails loginWithOpenId(String openId) {
-        return null;
+        /*获取用户信息*/
+        MallUserDetails user = (MallUserDetails) userRpc.getUserWithParam(openId);
+        /*设置用户名*/
+        user.setUsername(user.getName());
+        return user;
     }
 
     /**
@@ -82,7 +101,13 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
      * @Param: null
      */
     private UserDetails loginWithPhoneNo(String phoneNo) {
-        return null;
+        /*获取用户信息*/
+        MallUserDetails user = (MallUserDetails) userRpc.getUserWithParam(phoneNo);
+        /*设置用户名*/
+        user.setUsername(user.getName());
+        /*设置密码*/
+        user.setPassword(user.getPassword());
+        return user;
     }
 
     /**
@@ -93,7 +118,13 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
      * @return
      */
     private UserDetails loginWithEmail(String userName) {
-        return null;
+        /*获取用户信息*/
+        MallUserDetails user = (MallUserDetails) userRpc.getUserWithParam(userName);
+        /*设置用户名*/
+        user.setUsername(user.getName());
+        /*设置密码*/
+        user.setPassword(user.getPassword());
+        return user;
     }
 
 }
