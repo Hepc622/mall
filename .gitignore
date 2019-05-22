@@ -1,8 +1,0 @@
-.idea
-*.iml
-.mvn
-mvnw
-mvnw.cmd
-**/target/
-.svn
-**/logs/
