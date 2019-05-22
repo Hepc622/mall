@@ -2,6 +2,9 @@ package com.github.mall.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.mall.user.model.Permission;
+import com.github.mall.user.vo.RolePermissionOutVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,12 @@ import com.github.mall.user.model.Permission;
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
 
+    /**
+     * create by: HPC
+     * description: 获取权限对应的角色
+     * create time: 2019/5/22
+     * @Param: null
+     * @return 
+     */
+    List<RolePermissionOutVo> getAllPermission();
 }

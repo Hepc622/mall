@@ -1,7 +1,10 @@
 package com.github.mall.user.rpc.back;
 
-import com.github.mall.user.rpc.RoleRpc;
+import com.github.mall.user.model.Role;
+import com.github.mall.user.rpc.IRoleRpc;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author ：HPC
@@ -9,5 +12,9 @@ import org.springframework.stereotype.Service;
  * @description：
  */
 @Service
-public class RoleRpcImpl implements RoleRpc {
+public class RoleRpcImpl implements IRoleRpc {
+    @Override
+    public List<Role> getUserRole(Long id) {
+        return null;
+    }
 }

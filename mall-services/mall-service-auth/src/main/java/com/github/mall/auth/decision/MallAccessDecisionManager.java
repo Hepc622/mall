@@ -15,6 +15,7 @@ import java.util.Collection;
  * create by: HPC
  * description: 权限决策管理
  * create time: 2019/5/21
+ *
  * @Param: null
  * @return
  */
@@ -32,11 +33,9 @@ public class MallAccessDecisionManager implements AccessDecisionManager {
         if (null == configAttributes || configAttributes.size() <= 0) {
             return;
         }
-        ConfigAttribute c;
-        String needRole;
+
         for (ConfigAttribute configAttribute : configAttributes) {
-            c = configAttribute;
-            needRole = c.getAttribute();
+            String needRole = configAttribute.getAttribute();
             for (GrantedAuthority ga : authentication.getAuthorities()) {//authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
                 if (needRole.trim().equals(ga.getAuthority())) {
                     return;

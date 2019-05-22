@@ -4,13 +4,20 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.github.mall.user.model.Permission">
-        <id column="id" property="id" />
-        <result column="discription" property="discription" />
-        <result column="url" property="url" />
-        <result column="create_tm" property="createTm" />
-        <result column="update_tm" property="updateTm" />
-        <result column="create_id" property="createId" />
-        <result column="update_id" property="updateId" />
+        <id column="id" property="id"/>
+        <result column="discription" property="discription"/>
+        <result column="url" property="url"/>
+        <result column="create_tm" property="createTm"/>
+        <result column="update_tm" property="updateTm"/>
+        <result column="create_id" property="createId"/>
+        <result column="update_id" property="updateId"/>
     </resultMap>
+    <!--获取权限对应的角色-->
+    <select id="getAllPermission" resultType="com.github.mall.user.vo.RolePermissionOutVo">
+        select b.*,a.url,c.role_name
+        from permission a left join role_permission b left join role c
+         on b.role_id=c.id
+         on b.permission_id=a.id
+    </select>
 
 </mapper>

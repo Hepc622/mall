@@ -3,7 +3,6 @@ package com.github.mall.user.rpc;
 import com.github.mall.user.model.Role;
 import com.github.mall.user.rpc.back.RoleRpcImpl;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +15,6 @@ import java.util.List;
  * @description：
  */
 @FeignClient(value = "USER-SERVER", path = "/role/rpc", fallback = RoleRpcImpl.class)
-@Component
 public interface IRoleRpc {
 
     /**

@@ -1,8 +1,7 @@
 package com.github.mall.user.rpc.back;
 
-import com.github.mall.common.dto.Result;
-import com.github.mall.user.model.Permission;
 import com.github.mall.user.rpc.IPermissionRpc;
+import com.github.mall.user.vo.RolePermissionOutVo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class PermissionRpcImpl implements IPermissionRpc {
 
-    public Result<List<Permission>> getAllPermission() {
+    public List<RolePermissionOutVo> getAllPermission() {
         return null;
     }
 }
