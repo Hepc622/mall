@@ -2,6 +2,7 @@ package com.github.mall.user.mapper;
 
 import com.github.mall.user.model.RolePermission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author HPC
  * @since 2019-05-21
  */
+@Mapper
 public interface RolePermissionMapper extends BaseMapper<RolePermission> {
 
 }

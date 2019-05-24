@@ -13,7 +13,7 @@ import java.util.List;
  * @date ：Created in 2019-05-22
  * @description： 权限码rpc
  */
-@FeignClient(name = "USER-SERVER", path = "/permission/rpc", fallback = PermissionRpcImpl.class)
+@FeignClient(name = "SERVICE-USER", path = "/permission/rpc", fallback = PermissionRpcImpl.class)
 public interface IPermissionRpc {
 
 

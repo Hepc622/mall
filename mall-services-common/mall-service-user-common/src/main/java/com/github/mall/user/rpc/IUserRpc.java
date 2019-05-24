@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date ：Created in 2019-05-22
  * @description： 用户内部调用
  */
-@FeignClient(value = "USER-SERVER", path = "/user/rpc", fallback = UserRpcImpl.class)
+@FeignClient(value = "SERVICE-USER", path = "/user/rpc", fallback = UserRpcImpl.class)
 public interface IUserRpc {
     /**
      * create by: HPC

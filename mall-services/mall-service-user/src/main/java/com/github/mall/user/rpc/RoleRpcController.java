@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/role/rpc")
 @Transactional(rollbackFor = Exception.class)
-public class RoleRpc implements IRoleRpc {
+public class RoleRpcController implements IRoleRpc {
 
     @Autowired
     private IRoleService iRoleService;

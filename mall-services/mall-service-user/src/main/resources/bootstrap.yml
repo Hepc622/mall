@@ -1,13 +1,13 @@
-spring:
-  cloud:
-    config:
-#   按顺序覆盖，多个一样的配置，后者覆盖前者后面优先级最高
-      name: common-datasource,common-eureka,rabbit
-      label: master
-      profile: dev
-      discovery:
-        enabled: true
-        service-id: config-server
-    alibaba:
-      seata:
-        tx-service-group: mall_tx_group
+#spring:
+#  cloud:
+#    config:
+##   按顺序覆盖，多个一样的配置，后者覆盖前者后面优先级最高
+#      name: common-datasource,common-eureka,rabbit
+#      label: master
+#      profile: dev
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+#    alibaba:
+#      seata:
+#        tx-service-group: mall_tx_group

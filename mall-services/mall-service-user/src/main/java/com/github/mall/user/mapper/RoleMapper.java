@@ -1,8 +1,8 @@
 package com.github.mall.user.mapper;
 
-import com.github.mall.common.dto.Result;
-import com.github.mall.user.model.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.github.mall.user.model.Role;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,6 +15,7 @@ import java.util.List;
  * @author HPC
  * @since 2019-05-21
  */
+@Mapper
 public interface RoleMapper extends BaseMapper<Role> {
 
     /**

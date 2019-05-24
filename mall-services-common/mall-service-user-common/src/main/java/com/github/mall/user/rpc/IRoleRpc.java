@@ -14,7 +14,7 @@ import java.util.List;
  * @date ：Created in 2019-05-22
  * @description：
  */
-@FeignClient(value = "USER-SERVER", path = "/role/rpc", fallback = RoleRpcImpl.class)
+@FeignClient(value = "SERVICE-USER", path = "/role/rpc", fallback = RoleRpcImpl.class)
 public interface IRoleRpc {
 
     /**

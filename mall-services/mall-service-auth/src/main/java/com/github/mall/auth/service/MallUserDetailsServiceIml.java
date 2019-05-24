@@ -2,9 +2,11 @@ package com.github.mall.auth.service;
 
 import com.github.mall.common.utils.MallUtils;
 import com.github.mall.user.model.Role;
+import com.github.mall.user.model.User;
 import com.github.mall.user.rpc.IRoleRpc;
 import com.github.mall.user.rpc.IUserRpc;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,7 @@ import java.util.List;
  * @date ：Created in 2019-05-20
  * @description： 用户详情实现
  */
-@Component
+@Service
 @Primary
 @Slf4j
 public class MallUserDetailsServiceIml implements UserDetailsService {
@@ -86,10 +89,12 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
      */
     private UserDetails loginWithOpenId(String openId) {
         /*获取用户信息*/
-        MallUserDetails user = (MallUserDetails) userRpc.getUserWithParam(openId);
+        User user = userRpc.getUserWithParam(openId);
+        MallUserDetails userDetails = new MallUserDetails();
+        BeanUtils.copyProperties(user, userDetails);
         /*设置用户名*/
-        user.setUsername(user.getName());
-        return user;
+        userDetails.setUsername(openId);
+        return userDetails;
     }
 
     /**
@@ -104,7 +109,7 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
         /*获取用户信息*/
         MallUserDetails user = (MallUserDetails) userRpc.getUserWithParam(phoneNo);
         /*设置用户名*/
-        user.setUsername(user.getName());
+        user.setUsername(phoneNo);
         /*设置密码*/
         user.setPassword(user.getPassword());
         return user;
@@ -121,7 +126,7 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
         /*获取用户信息*/
         MallUserDetails user = (MallUserDetails) userRpc.getUserWithParam(userName);
         /*设置用户名*/
-        user.setUsername(user.getName());
+        user.setUsername(userName);
         /*设置密码*/
         user.setPassword(user.getPassword());
         return user;

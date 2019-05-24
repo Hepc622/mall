@@ -13,10 +13,13 @@
     </resultMap>
     <!--通过用户ID获取用户角色-->
     <select id="getUserRole" resultType="com.github.mall.user.model.Role">
-        select a.*
-        from role a right join user_role b
-        on b.role_id=a.id
-        where a.user_id=#{userId}
+        SELECT
+            b.*
+        FROM
+            user_role a
+            LEFT JOIN role b ON b.id = a.role_id
+        WHERE
+            user_id = #{userId}
     </select>
 
 </mapper>

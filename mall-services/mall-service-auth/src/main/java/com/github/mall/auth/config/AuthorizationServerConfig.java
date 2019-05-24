@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
  * description: 验证服务配置
  * create time: 2019/5/21
  * @Param: null
- * @return 
+ * @return
  */
 @Configuration
 @EnableAuthorizationServer
@@ -41,8 +41,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
-                .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                .tokenKeyAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
+                .checkTokenAccess("isAuthenticated()")//url:/oauth/check_token allow check token
+                .allowFormAuthenticationForClients();
     }
 
     @Override

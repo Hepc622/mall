@@ -40,18 +40,22 @@ public class MallInvocationSecurityMetadataSourceService implements
      */
     private void loadResourceDefine() {
         map = new HashMap<>();
-        Collection<ConfigAttribute> collection;
+        Collection<ConfigAttribute> attributes;
         ConfigAttribute configAttribute;
         List<RolePermissionOutVo> allPermission = iPermissionRpc.getAllPermission();
 
         for (RolePermissionOutVo permission : allPermission) {
-            collection = new ArrayList<>();
+            /*获取url已需要的权限集合*/
+            attributes = map.get(permission.getUrl());
+            /*如果没有权限就创建一个新的权限集合*/
+            if (attributes == null) {
+                attributes = new ArrayList<>();
+            }
+
             configAttribute = new SecurityConfig(permission.getRoleName());
-            //此处只添加了用户的名字，其实还可以添加更多权限的信息，
-            // 例如请求方法到ConfigAttribute的集合中去。此处添加的信息将会作为MyAccessDecisionManager类的decide的第三个参数。
-            collection.add(configAttribute);
+            attributes.add(configAttribute);
             //用权限的getUrl() 作为map的key，用ConfigAttribute的集合作为 value，
-            map.put(permission.getUrl(), collection);
+            map.put(permission.getUrl(), attributes);
         }
 
     }

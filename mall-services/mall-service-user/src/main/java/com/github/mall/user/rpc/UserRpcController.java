@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user/rpc")
 @Transactional(rollbackFor = Exception.class)
-public class UserRpc implements IUserRpc {
+public class UserRpcController implements IUserRpc {
 
     @Autowired
     private IUserService userService;
@@ -30,7 +30,7 @@ public class UserRpc implements IUserRpc {
      * @param param openId userId phoneNo email
      * @return
      */
-    @PostMapping("/getUser/{param}")
+    @PostMapping("/getUserWithParam/{param}")
     public User getUserWithParam(@PathVariable("param") String param) {
         return userService.getUserWithParam(param).getData();
     }

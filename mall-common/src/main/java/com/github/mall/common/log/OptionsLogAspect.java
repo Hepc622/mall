@@ -92,7 +92,7 @@ public class OptionsLogAspect {
      * @Description: 环绕触发
      */
     @ResponseBody
-    @Around(value = "execution(* com.github.mall..*.*Controller.*(..)) || execution(* com.github.mall..*.*Rpc.*(..)))")
+    @Around(value = "execution(* com.github.mall..*.*Controller.*(..))")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
         Object result = null;
         // 前置

@@ -9,6 +9,7 @@
 #    resource:
 #      userInfoUri: http://127.0.0.1:8764/user
 #      preferTokenInfo: false
+
 security:
   oauth2:
     client:

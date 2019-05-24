@@ -5,6 +5,7 @@ import com.github.mall.user.vo.RolePermissionOutVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/permission/rpc")
 @Transactional(rollbackFor = Exception.class)
-public class PermissionRpc implements IPermissionRpc {
+public class PermissionRpcController implements IPermissionRpc {
 
     @Autowired
     private IPermissionService iPermissionService;
@@ -30,6 +31,7 @@ public class PermissionRpc implements IPermissionRpc {
      * @return
      */
     @Override
+    @RequestMapping(value = "/getAllPermission", method = {RequestMethod.POST})
     public List<RolePermissionOutVo> getAllPermission() {
         return iPermissionService.getAllPermission().getData();
     }

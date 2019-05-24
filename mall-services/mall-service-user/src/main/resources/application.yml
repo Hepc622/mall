@@ -1,5 +1,5 @@
 server:
-  port: 8764
+  port: 8772
 #    zipkin服务地址
 spring:
   # 数据源
@@ -54,22 +54,13 @@ spring:
       login-password: mallPasswd
 
   application:
-    name: service-auth
+    name: service-user
 
 # 注册clien
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-
-security:
-  oauth2:
-    client:
-      clientId: bd1c0a783ccdd1c9b9e4
-      clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1
-      accessTokenUri: https://github.com/login/oauth/access_token
-      userAuthorizationUri: https://github.com/login/oauth/authorize
-      clientAuthenticationScheme: form
-    resource:
-      userInfoUri: https://api.github.com/user
-      preferTokenInfo: false
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
