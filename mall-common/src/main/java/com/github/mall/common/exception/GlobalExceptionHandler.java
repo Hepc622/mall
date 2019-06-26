@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
         if (ex instanceof AccessDeniedException) {
             return Result.noRight(ex);
         } else {
-            return Result.fail();
+            return Result.fail(ex);
         }
     }
 }

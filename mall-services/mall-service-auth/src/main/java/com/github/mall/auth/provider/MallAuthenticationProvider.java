@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
  * @description： 验证提供
  */
 @Component
+@Primary
 public class MallAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private UserDetailsService userDetailsService;
@@ -23,7 +24,7 @@ public class MallAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         UserDetails userDetails = userDetailsService.loadUserByUsername(authentication.getPrincipal().toString());
         if (userDetails != null) {
-            return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword());
+            return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(),userDetails.getAuthorities());
         }
         return null;
     }

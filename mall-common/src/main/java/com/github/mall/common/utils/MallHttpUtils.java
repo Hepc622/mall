@@ -16,7 +16,7 @@ public class MallHttpUtils {
      *
      * @return
      */
-    public static String webServiceRequest(String url, String soapAction,String strBody) {
+    public static String webServiceRequest(String url, String soapAction, String strBody) {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("text/xml");
         //设置soap请求头,并设置方法名和参数
@@ -33,7 +33,8 @@ public class MallHttpUtils {
             if (200 == code) {
                 String xmlResult = response.body().string();
                 if (StringUtils.isNotEmpty(xmlResult)) {
-                    System.out.println("返回数据为--->"+xmlResult);
+                    xmlResult = xmlResult.replace("\r", "");
+                    System.out.println("返回数据为--->" + xmlResult);
                     return xmlResult;
                 }
             }

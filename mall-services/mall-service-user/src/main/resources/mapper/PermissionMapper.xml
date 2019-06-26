@@ -20,8 +20,8 @@
             c.role_name
         FROM
             permission a
-            LEFT JOIN role_permission b
-            LEFT JOIN role c ON b.role_id = c.id ON b.permission_id = a.id
+            LEFT JOIN role_permission b ON b.permission_id = a.id
+            LEFT JOIN role c ON b.role_id = c.id
     </select>
 
 </mapper>

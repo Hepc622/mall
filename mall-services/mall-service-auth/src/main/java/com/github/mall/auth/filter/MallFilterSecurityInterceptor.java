@@ -55,7 +55,7 @@ public class MallFilterSecurityInterceptor extends AbstractSecurityInterceptor i
             //执行下一个拦截器
             fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
         } finally {
-            super.afterInvocation(token, null);
+            super.afterInvocation(token, new Object());
         }
     }
 

@@ -171,10 +171,12 @@ public class OptionsLogAspect {
 
     private Integer getFieldIndex(String[] paramNames, String fieldName) {
         Integer index = null;
-        for (int i = 0; i < paramNames.length; i++) {
-            if (fieldName.equals(paramNames[i])) {
-                index = i;
-                break;
+        if (paramNames != null) {
+            for (int i = 0; i < paramNames.length; i++) {
+                if (fieldName.equals(paramNames[i])) {
+                    index = i;
+                    break;
+                }
             }
         }
         return index;

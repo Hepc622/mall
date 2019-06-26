@@ -16,6 +16,7 @@
         <module>mall-service-product</module>
         <module>mall-service-rabbit</module>
         <module>mall-service-auth</module>
+        <module>mall-service-order</module>
     </modules>
     <dependencies>
         <!--redisson start include web -->

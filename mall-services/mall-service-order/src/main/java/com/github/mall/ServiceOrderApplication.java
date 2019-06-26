@@ -6,19 +6,15 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * 描述:
- * 验证服务
- *
- * @author HPC
- * @create 2019-04-29
+ * @author ：HPC
+ * @date ：Created in 2019-06-24
+ * @description： 订单服务
  */
-@EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
-public class ServiceAuthApplication {
+@EnableDiscoveryClient
+public class ServiceOrderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ServiceAuthApplication.class, args);
+        SpringApplication.run(ServiceOrderApplication.class, args);
     }
 }
-
-

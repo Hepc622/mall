@@ -1,0 +1,109 @@
+#spring:
+#  cloud:
+#    config:
+#      name: common-datasource,common-eureka,rabbit
+#      label: master
+#      profile: dev
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+#
+#    alibaba:
+#      seata:
+#        tx-service-group: mall_tx_group
+
+#    zipkin服务地址
+spring:
+  # 数据源
+  datasource:
+    # 使用阿里的Druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.160:3306/test?useSSL=false&characterEncoding=utf8
+    username: root
+    password: 123
+    # 填写你数据库的url、登录名、密码和数据库名
+    druid:
+      # 连接池的配置信息
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+      # 配置DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+      # 配置DruidStatViewServlet
+      stat-view-servlet:
+        url-pattern: "/druid/*"
+        # IP白名单(没有配置或者为空，则允许所有访问)
+        allow: 127.0.0.1
+        # IP黑名单 (存在共同时，deny优先于allow)
+        # deny: 192.168.1.73
+        #  禁用HTML页面上的“Reset All”功能
+        reset-enable: false
+        # 登录名
+        login-username: admin
+        # 登录密码
+      login-password: mallPasswd
+
+  application:
+    name: service-order
+
+# 注册clien
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+
+alipay:
+  config:
+#   应用ID,您的APPID，收款账号既是您的APPID对应支付宝账号
+    app_id: "2016092600597546"
+
+#   商户私钥，您的PKCS8格式RSA2私钥
+    merchant_private_key: "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC4IPuEQsxD4OdSO6wwM+cqkjCSF9/QvIrFehRhesDv8sdbCNB+MToTIbQXiMbscDmv2UD4YzZTh0bH/7QQLtqMvCPtBVepR1dovGzjbUzqmERyz+u91qz2JNW5dZr2ZBrpcccOyo9HliHG4N9zIv5cQJynQsDRyM1NL+XPd2EViMIh0I5CzOZ1EZE5qf0dLEpSKQZFik3PcKnn12+KeU60fmHB1zTmY43O6FKqF7g3O6aT72bumkz4sHhjtU1ovHq0JmX09gVQEjYWEphI/N7lR13tuM+HK62g+kppSpkDMyhjbXmCawGvI1oHl6k5wTnsFda0CLgWqxkVy1Us7xtFAgMBAAECggEAU4k7Mw0vKRiPOiKygwf5N7otaQqF02jGuMMjHfqYMASAZ4+/L5Fb3LQsxYSbY0ejFGHHdSlly02TUkdzROhM5Q6yaeVDmRwxzuW1rRS4kbJVU5V7SZxsyht6D3MIxAI0p3akLdS+XmcBmf4Jwm284tO5frTtT///DKbPZ2ms1Rx42xBB6DVyP8GEC9uKEwESr9FClVJDntA40xoJm3n4gXZVf2ibXHbI/upMNZpN3BCuiEJKVnRxzy0sNbkIYpxADC8Vrwafz4vQTfFlzz7xOsgyDmRzgeSWSrOmAeFb6rTIKUNRboUVkAWSjQgzQ1KXzi2dIUtDqVQZ4GxX+o8avQKBgQD4Ky8XSXtmfSDyGRX8+MjxZd+merMMdzkaOzM2Nx1EkQN4SKoAkuL27bX0h1h9WFpYvQpL1HTB9Q9/UjT3PsAWbpvNftDyqQsXGiNJttSX7Z9t5BWa8U4qNHJF/bjUswxC+Xo1tqJIAKPgCYkIva94/vd/24yt9HxfhuUxcGvFmwKBgQC98HTW7YulylONP/Bt2HkHp43CeYeYrL4NTK9F5Ek6HA0Va7oXWC0e1WPUtFHe8FqJKZ74+6kgdeZ+uvXjMIzCA19ovEvPfBNxc9KNQSgtrHhcQoK0I5fSn99/OmdC3tAgR6B3J+XKthLUwxS+/DikynW14hk0ynDAvAEyfqQgnwKBgHvIhm+WHnALf9BiBN6udQQ7bSfL0d0o5pmX575mFTorHtDzZaBto7nI7dYvYEr9M+tJN4aFTUulYXp/VZ3xdbx6pUoFtFElUjvOtMVC5Z12T+xvNPuY2wUgLdONb5DgUgBiEbwTAbTqZNMNzoVGn+y5OFhU+UGXTiYT0eQsEAV7AoGAARV8NTXJ1DphW67/ukDAABEut+tloLNrqjvDzExPNquuT2778uIn78Mb/LzCstkAS0QXiig1gN/rXtHGUXOXegv24Wwhqp90pPMaQoAasJgJX81pXYnOdf8/kURODo2i9mwyODvcDdoYJWqvlZ9u21HkdhNCPZDiL9di0lzyptUCgYBhC+6fmDaJDiSxRgR5ZgK84yrXttJUlNj5Fwsh4qhssFVhnzBWt7nZy2vBWrbtX4rcrAu1XzpSLJTPdyk9wwc5pHekWQPVYAkqq1WQSTKmw11I03wOyT2SH6E3ummZiUr8H78/K5+WqalqW2KSQtWNGK/u/a4Xzn7feDYIHxWAKA=="
+
+#   支付宝公钥,查看地址：https://openhome.alipay.com/platform/keyManage.htm 对应APPID下的支付宝公钥。
+    alipay_public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtHlxJw7YCdzJXbB+09W4W7WaEQ6ybkwXvZ+72xChU4OOLrDmeVI0Hpyy3xr54yp0Xi0rW/CwTuQy9bymbr6wwJcd0ktWJZmBOdIMcWfgPpJlSaA0vxsWjtQ95TKDqDQcL2mOI6LIAV4njmpYgR16nRWFxZTZijg7zg0CFY58OXXe+m8+6lsj6pLs1hMraVjMZ6OyGeWjkr/8ldJQLDnygqyPXjhBUKpzBR56YLDlkEGuZKa36pDA3ngA6BgQpx8dgvYBLuGKsph4lN+EcQE+tooLQzDYRShRPBTpagBw0X10+WOQIxzWobjZ/zPZ83ZKF2X+lW/qr8JVnsLuMUQH4QIDAQAB"
+
+#   服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
+    notify_url: "http://hpc.4kb.cn/alipay/notify"
+
+#   页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问 支付完之后的调转页面
+    return_url: "http://www.baidu.com"
+
+#   签名方式
+    sign_type: "RSA2"
+
+#   字符编码格式
+    charset: "utf-8"
+
+#   支付宝网关
+#    生产  https://openapi.alipay.com/gateway.do
+#    开发  https://openapi.alipaydev.com/gateway.do
+    gateway_url: "https://openapi.alipaydev.com/gateway.do"
+
+server:
+  port: 8080
