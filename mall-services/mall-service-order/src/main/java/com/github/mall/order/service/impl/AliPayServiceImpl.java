@@ -4,12 +4,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.github.mall.common.dto.Result;
 import com.github.mall.order.config.alibaba.AlipayConfig;
+import com.github.mall.order.enums.AliPayTypeEnum;
 import com.github.mall.order.service.AliPayService;
 import com.github.mall.order.vo.AliPayRequestVo;
+import com.github.mall.order.vo.AliPayResponseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,34 +45,68 @@ public class AliPayServiceImpl implements AliPayService {
      * description: 统一收单下单并支付页面接口
      * create time: 2019/6/25
      */
-    public void preparePay(AliPayRequestVo vo, HttpServletResponse response) {
+    public Result<AliPayResponseVo> preparePay(AliPayRequestVo vo, HttpServletResponse response) {
+        /*支付响应体*/
+        AliPayResponseVo payResponseVo = new AliPayResponseVo();
         try {
+
+            /*获取支付宝请求客户端*/
             AlipayClient alipayClient = getAlipayClient();
-            //设置请求参数
-            AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-            alipayRequest.setReturnUrl(alipayConfig.getReturn_url());
-            alipayRequest.setNotifyUrl(alipayConfig.getNotify_url());
 
-            //组装json数据
-            String bizContent = JSONObject.toJSONString(vo);
-            alipayRequest.setBizContent("{\"out_trade_no\":\"" + vo.getOut_trade_no() + "\","
-                    + "\"total_amount\":\"" + vo.getTotal_amount() + "\","
-                    + "\"subject\":\"" + vo.getSubject() + "\","
-                    + "\"body\":\"" + vo.getBody() + "\","
-                    + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-            String result = alipayClient.pageExecute(alipayRequest).getBody();
+            /*web发起的支付*/
+            if (AliPayTypeEnum.WEB_PAY.getValue().equals(vo.getPayType())) {
+                //设置请求参数
+                AlipayTradePagePayRequest webPayRequest = new AlipayTradePagePayRequest();
+                webPayRequest.setReturnUrl(alipayConfig.getReturn_url());
+                webPayRequest.setNotifyUrl(alipayConfig.getNotify_url());
 
-            /*将页面写到响应流里*/
-            response.setContentType("text/html;charset=" + alipayConfig.getCharset());
-            PrintWriter writer = response.getWriter();
-            writer.write(result);
-            writer.flush();
-            writer.close();
+                //组装json数据
+                String bizContent = JSONObject.toJSONString(vo);
+                webPayRequest.setBizContent(bizContent);
+                /*发起下单请求*/
+                String result = alipayClient.pageExecute(webPayRequest).getBody();
+
+                /*设置响应体*/
+                payResponseVo.setWebPayBody(result);
+
+                return Result.success(payResponseVo);
+
+                /*app 发起的支付*/
+            } else if (AliPayTypeEnum.APP_PAY.getValue().equals(vo.getPayType())) {
+                /*创建app下单请求实体*/
+                AlipayTradeAppPayRequest appPayRequest = new AlipayTradeAppPayRequest();
+
+                /*组装请求实体数据*/
+                AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
+                /*自定义数据*/
+                model.setBody(vo.getBody());
+                /*订单名*/
+                model.setSubject(vo.getSubject());
+                /*订单号*/
+                model.setOutTradeNo(vo.getOut_trade_no());
+                /*超时时间*/
+                model.setTimeoutExpress("30m");
+                /*支付金额*/
+                model.setTotalAmount(vo.getTotal_amount());
+                model.setProductCode("QUICK_MSECURITY_PAY");
+                appPayRequest.setBizModel(model);
+
+                /*发起下单请求*/
+                AlipayTradeAppPayResponse aliResponse = alipayClient.sdkExecute(appPayRequest);
+
+                /*获取返回数据*/
+                String body = aliResponse.getBody();
+
+                /*设置请求响应体*/
+                payResponseVo.setAppPayBody(body);
+
+                return Result.success(payResponseVo);
+            }
+
         } catch (AlipayApiException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return Result.fail(payResponseVo);
     }
 
     /**
@@ -166,7 +205,7 @@ public class AliPayServiceImpl implements AliPayService {
                 }
             }
         } catch (Exception e) {
-            log.error("支付宝回调本服务抛出异常: ",e);
+            log.error("支付宝回调本服务抛出异常: ", e);
             return "fail";
 
         }

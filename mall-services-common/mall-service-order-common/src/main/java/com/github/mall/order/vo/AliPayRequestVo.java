@@ -22,4 +22,6 @@ public class AliPayRequestVo {
     /*商品描述*/
     private String body;
 
+    /*支付类型 0 web 1 app 2 小程序 3 生活号 4 第三方服务商*/
+    private Integer payType;
 }

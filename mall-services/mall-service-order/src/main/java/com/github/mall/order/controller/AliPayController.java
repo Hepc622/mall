@@ -3,12 +3,9 @@ package com.github.mall.order.controller;
 import com.github.mall.common.dto.Result;
 import com.github.mall.order.service.AliPayService;
 import com.github.mall.order.vo.AliPayRequestVo;
+import com.github.mall.order.vo.AliPayResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date ：Created in 2019-06-25
  * @description： 支付控制器
  */
-@Controller
+@RestController
 @RequestMapping("/alipay")
 public class AliPayController {
 
@@ -32,9 +29,9 @@ public class AliPayController {
      *
      * @return
      */
-    @RequestMapping(value = "/preparePay", method = {RequestMethod.POST, RequestMethod.GET})
-    public void preparePay(AliPayRequestVo obj, HttpServletResponse response) {
-        aliPayService.preparePay(obj, response);
+    @RequestMapping(value = "/preparePay", method = {RequestMethod.POST})
+    public Result<AliPayResponseVo> preparePay(@RequestBody AliPayRequestVo obj, HttpServletResponse response) {
+        return aliPayService.preparePay(obj, response);
     }
 
     /**
@@ -43,7 +40,6 @@ public class AliPayController {
      * create time: 2019/6/25
      */
     @RequestMapping(value = "/refund", method = {RequestMethod.POST})
-    @ResponseBody
     public Result refund(@RequestBody Object obj) {
         return aliPayService.refund(obj);
     }
@@ -55,7 +51,6 @@ public class AliPayController {
      * create time: 2019/6/25
      */
     @RequestMapping(value = "/refundQuery", method = {RequestMethod.POST})
-    @ResponseBody
     public Result refundQuery(@RequestBody Object obj) {
         return aliPayService.refundQuery(obj);
     }
@@ -69,8 +64,7 @@ public class AliPayController {
      * @Param: null
      */
     @RequestMapping(value = "/close", method = {RequestMethod.POST})
-    @ResponseBody
-    public Result close(@RequestBody Object obj){
+    public Result close(@RequestBody Object obj) {
         return aliPayService.close(obj);
     }
 
@@ -83,8 +77,7 @@ public class AliPayController {
      * @return
      * @Param: null
      */
-    @RequestMapping(value = "/notify", method = {RequestMethod.POST,RequestMethod.GET})
-    @ResponseBody
+    @RequestMapping(value = "/notify", method = {RequestMethod.POST, RequestMethod.GET})
     public String notify(HttpServletRequest request) {
         return aliPayService.notify(request);
     }

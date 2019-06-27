@@ -2,6 +2,7 @@ package com.github.mall.order.service;
 
 import com.github.mall.common.dto.Result;
 import com.github.mall.order.vo.AliPayRequestVo;
+import com.github.mall.order.vo.AliPayResponseVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ public interface AliPayService {
      * description: 统一收单下单并支付页面接口
      * create time: 2019/6/25
      */
-    void preparePay(AliPayRequestVo vo, HttpServletResponse response);
+    Result<AliPayResponseVo> preparePay(AliPayRequestVo vo, HttpServletResponse response);
 
     /**
      * create by: HPC
