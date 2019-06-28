@@ -30,6 +30,7 @@ public class UserRpcController implements IUserRpc {
      * @param param openId userId phoneNo email
      * @return
      */
+    @Override
     @PostMapping("/getUserWithParam/{param}")
     public User getUserWithParam(@PathVariable("param") String param) {
         return userService.getUserWithParam(param).getData();

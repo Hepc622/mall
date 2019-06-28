@@ -36,6 +36,7 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
     private IRoleRpc roleRpc;
 
 
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDetails userDetails;
 

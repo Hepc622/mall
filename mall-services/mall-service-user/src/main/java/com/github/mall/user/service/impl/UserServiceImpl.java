@@ -1,12 +1,12 @@
 package com.github.mall.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.mall.common.dto.Result;
 import com.github.mall.common.utils.MallUtils;
-import com.github.mall.user.model.User;
 import com.github.mall.user.mapper.UserMapper;
+import com.github.mall.user.model.User;
 import com.github.mall.user.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,16 +26,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @param param openid userid phone email
      * @return
      */
+    @Override
     public Result<User> getUserWithParam(String param) {
         User user;
         QueryWrapper<User> wrapper = new QueryWrapper<User>();
 
-        if (MallUtils.isEmail(param)) {/*是否为通过邮箱获取*/
+        /*是否为通过邮箱获取*/
+        if (MallUtils.isEmail(param)) {
             wrapper.eq("email", param);
             user = baseMapper.selectOne(wrapper);
             return Result.success(user);
 
-        } else if (MallUtils.isPhoneLegal(param, true)) {/*通过手机号码获取*/
+            /*通过手机号码获取*/
+        } else if (MallUtils.isPhoneLegal(param, true)) {
             wrapper.eq("phone", param);
             user = baseMapper.selectOne(wrapper);
             return Result.success(user);

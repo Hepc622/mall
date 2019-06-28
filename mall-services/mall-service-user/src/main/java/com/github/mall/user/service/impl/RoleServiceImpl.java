@@ -25,6 +25,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
      * description: 通过用户ID获取用户角色
      * create time: 2019/5/22
      */
+    @Override
     public Result<List<Role>> getUserRole(Long userId) {
         /*获取用户角色*/
         List<Role> userRole = baseMapper.getUserRole(userId);

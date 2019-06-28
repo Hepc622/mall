@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserRpcImpl implements IUserRpc {
 
+    @Override
     public User getUserWithParam(String param) {
         return null;
     }

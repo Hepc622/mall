@@ -21,6 +21,7 @@ public class MallAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         UserDetails userDetails = userDetailsService.loadUserByUsername(authentication.getPrincipal().toString());
         if (userDetails != null) {
@@ -29,6 +30,7 @@ public class MallAuthenticationProvider implements AuthenticationProvider {
         return null;
     }
 
+    @Override
     public boolean supports(Class<?> authentication) {
         return true;
     }

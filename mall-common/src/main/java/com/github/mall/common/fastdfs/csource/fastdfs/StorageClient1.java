@@ -264,7 +264,7 @@ public class StorageClient1 extends StorageClient {
   public String upload_file1(String master_file_id, String prefix_name,
                              String local_filename, String file_ext_name, NameValuePair[] meta_list) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(master_file_id, parts);
+    this.errno = split_file_id(master_file_id, parts);
     if (this.errno != 0) {
       return null;
     }
@@ -292,7 +292,7 @@ public class StorageClient1 extends StorageClient {
   public String upload_file1(String master_file_id, String prefix_name,
                              byte[] file_buff, String file_ext_name, NameValuePair[] meta_list) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(master_file_id, parts);
+    this.errno = split_file_id(master_file_id, parts);
     if (this.errno != 0) {
       return null;
     }
@@ -320,7 +320,7 @@ public class StorageClient1 extends StorageClient {
                              byte[] file_buff, int offset, int length, String file_ext_name,
                              NameValuePair[] meta_list) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(master_file_id, parts);
+    this.errno = split_file_id(master_file_id, parts);
     if (this.errno != 0) {
       return null;
     }
@@ -350,7 +350,7 @@ public class StorageClient1 extends StorageClient {
                              UploadCallback callback, String file_ext_name,
                              NameValuePair[] meta_list) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(master_file_id, parts);
+    this.errno = split_file_id(master_file_id, parts);
     if (this.errno != 0) {
       return null;
     }
@@ -372,7 +372,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int append_file1(String appender_file_id, String local_filename) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -389,7 +389,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int append_file1(String appender_file_id, byte[] file_buff) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -408,7 +408,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int append_file1(String appender_file_id, byte[] file_buff, int offset, int length) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -426,7 +426,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int append_file1(String appender_file_id, long file_size, UploadCallback callback) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -445,7 +445,7 @@ public class StorageClient1 extends StorageClient {
   public int modify_file1(String appender_file_id,
                           long file_offset, String local_filename) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -464,7 +464,7 @@ public class StorageClient1 extends StorageClient {
   public int modify_file1(String appender_file_id,
                           long file_offset, byte[] file_buff) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -485,7 +485,7 @@ public class StorageClient1 extends StorageClient {
   public int modify_file1(String appender_file_id,
                           long file_offset, byte[] file_buff, int buffer_offset, int buffer_length) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -506,7 +506,7 @@ public class StorageClient1 extends StorageClient {
   public int modify_file1(String appender_file_id,
                           long file_offset, long modify_size, UploadCallback callback) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -522,7 +522,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int delete_file1(String file_id) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -538,7 +538,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int truncate_file1(String appender_file_id) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -555,7 +555,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int truncate_file1(String appender_file_id, long truncated_file_size) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(appender_file_id, parts);
+    this.errno = split_file_id(appender_file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -586,7 +586,7 @@ public class StorageClient1 extends StorageClient {
    */
   public byte[] download_file1(String file_id, long file_offset, long download_bytes) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return null;
     }
@@ -619,7 +619,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int download_file1(String file_id, long file_offset, long download_bytes, String local_filename) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -652,7 +652,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int download_file1(String file_id, long file_offset, long download_bytes, DownloadCallback callback) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -668,7 +668,7 @@ public class StorageClient1 extends StorageClient {
    */
   public NameValuePair[] get_metadata1(String file_id) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return null;
     }
@@ -690,7 +690,7 @@ public class StorageClient1 extends StorageClient {
    */
   public int set_metadata1(String file_id, NameValuePair[] meta_list, byte op_flag) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return this.errno;
     }
@@ -706,7 +706,7 @@ public class StorageClient1 extends StorageClient {
    */
   public FileInfo query_file_info1(String file_id) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return null;
     }
@@ -722,7 +722,7 @@ public class StorageClient1 extends StorageClient {
    */
   public FileInfo get_file_info1(String file_id) throws IOException, MyException {
     String[] parts = new String[2];
-    this.errno = this.split_file_id(file_id, parts);
+    this.errno = split_file_id(file_id, parts);
     if (this.errno != 0) {
       return null;
     }

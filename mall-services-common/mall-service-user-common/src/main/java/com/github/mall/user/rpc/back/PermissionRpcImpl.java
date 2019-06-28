@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class PermissionRpcImpl implements IPermissionRpc {
 
+    @Override
     public List<RolePermissionOutVo> getAllPermission() {
         return null;
     }
