@@ -10,6 +10,8 @@ import org.apache.commons.lang.StringUtils;
  */
 public class MallHttpUtils {
 
+    private final static int OK = 200;
+
     /**
      * 同步
      * webservice请求工具
@@ -30,7 +32,7 @@ public class MallHttpUtils {
         try {
             Response response = client.newCall(request).execute();
             int code = response.code();
-            if (200 == code) {
+            if (OK == code) {
                 String xmlResult = response.body().string();
                 if (StringUtils.isNotEmpty(xmlResult)) {
                     xmlResult = xmlResult.replace("\r", "");

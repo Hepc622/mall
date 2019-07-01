@@ -4,6 +4,10 @@ package com.github.mall.common.utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * id生成 Class
  *
@@ -151,9 +155,9 @@ public class SnowflakeIdWorker {
         lastTimestamp = timestamp;
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - twepoch) << timestampLeftShift) //
-                | (datacenterId << datacenterIdShift) //
-                | (workerId << workerIdShift) //
+        return ((timestamp - twepoch) << timestampLeftShift)
+                | (datacenterId << datacenterIdShift)
+                | (workerId << workerIdShift)
                 | sequence;
     }
 
@@ -163,7 +167,7 @@ public class SnowflakeIdWorker {
      * @param lastTimestamp 上次生成ID的时间截
      * @return 当前时间戳
      */
-    protected long tilNextMillis(long lastTimestamp) {
+    private long tilNextMillis(long lastTimestamp) {
         long timestamp = timeGen();
         while (timestamp <= lastTimestamp) {
             timestamp = timeGen();
@@ -176,19 +180,23 @@ public class SnowflakeIdWorker {
      *
      * @return 当前时间(毫秒)
      */
-    protected long timeGen() {
+    private long timeGen() {
         return System.currentTimeMillis();
     }
 
     //==============================Test=============================================
     /** 测试 */
-//    public  void main(String[] args) {
-//        SnowflakeIdWorker idWorker = new SnowflakeIdWorker(561636l, 1243423655l);
-//        long id = idWorker.nextId();
-////        Integer sss=Integer.valueOf(String.valueOf(id));
-////        System.out.println("sss="+sss);
-//        System.out.println(id);
-////        List<String> str = JiguangUser.ReggisterUserList("huatuo1111111111111111111111111111111111111111111111111111111111111111");
-////        System.out.println(str);
-//    }
+    public static void main(String[] args) {
+        Executor executor = ThreadUtils.newFixedThreadPool(10);
+        final SnowflakeIdWorker idWorker = new SnowflakeIdWorker(22L, 20L);
+        for (int i = 0; i < 1000; i++) {
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    long id = idWorker.nextId();
+                    System.out.println(Thread.currentThread().getName()+":"+id);
+                }
+            });
+        }
+    }
 }

@@ -21,7 +21,7 @@ public class RedissonConfig {
 
     @Bean
     @Primary
-    public RedissonClient redissonclient() throws IOException {
+    public RedissonClient redissonClient() throws IOException {
         Config config = Config.fromJSON(ResourceUtils.getFile("classpath:redisson.json"));
         return Redisson.create(config);
     }
