@@ -17,8 +17,7 @@ import java.io.IOException;
  * description: 添加权限拦截处理
  * create time: 2019/5/21
  *
- * @Param: null
- * @return
+ * @author Administrator
  */
 @Service
 public class MallFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {

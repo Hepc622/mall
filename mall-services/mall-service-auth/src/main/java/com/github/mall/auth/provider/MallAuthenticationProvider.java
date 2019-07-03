@@ -23,9 +23,13 @@ public class MallAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(authentication.getPrincipal().toString());
+        /*处理用户明为空的情况*/
+        Object principal = authentication.getPrincipal();
+        principal = principal != null ? principal : "";
+        /*获取用户信息*/
+        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.toString());
         if (userDetails != null) {
-            return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(),userDetails.getAuthorities());
+            return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
         }
         return null;
     }

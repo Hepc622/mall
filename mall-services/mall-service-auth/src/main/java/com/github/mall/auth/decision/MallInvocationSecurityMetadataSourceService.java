@@ -21,9 +21,7 @@ import java.util.List;
  * create by: HPC
  * description: 权限数据源
  * create time: 2019/5/21
- *
- * @Param: null
- * @return
+ * @author HPC
  */
 @Service
 @Primary
@@ -39,7 +37,7 @@ public class MallInvocationSecurityMetadataSourceService implements
      * 加载权限表中所有权限
      */
     private void loadResourceDefine() {
-        map = new HashMap<>();
+        map = new HashMap<>(20);
         Collection<ConfigAttribute> attributes;
         ConfigAttribute configAttribute;
         List<RolePermissionOutVo> allPermission = iPermissionRpc.getAllPermission();
@@ -60,7 +58,13 @@ public class MallInvocationSecurityMetadataSourceService implements
 
     }
 
-    //此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
+    /**
+     * @description : 此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
+     * @author : HPC
+     * @date : 2019/7/2 16:26
+     * @param object :
+     * @return java.util.Collection<org.springframework.security.access.ConfigAttribute>
+     */
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         if (map == null) {

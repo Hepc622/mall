@@ -28,7 +28,7 @@ import java.util.List;
 @Service
 @Primary
 @Slf4j
-public class MallUserDetailsServiceIml implements UserDetailsService {
+public class MallUserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private IUserRpc userRpc;
 
@@ -65,7 +65,13 @@ public class MallUserDetailsServiceIml implements UserDetailsService {
         return userDetails;
     }
 
-    /*获取用户权限并且设置权限*/
+    /**
+     * @description : 获取用户权限
+     * @author : HPC
+     * @date : 2019/7/2 16:35
+     * @param user :
+     * @return void
+     */
     private void setGrantAuthority(MallUserDetails user) {
         /*获取该用户有的权限*/
         List<Role> roles = roleRpc.getUserRole(user.getId());

@@ -15,6 +15,7 @@ import java.util.Collection;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+public
 class MallUserDetails extends User implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
     private String password;

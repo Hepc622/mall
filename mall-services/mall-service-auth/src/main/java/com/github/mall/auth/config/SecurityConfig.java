@@ -15,8 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * description: 权限配置
  * create time: 2019/5/21
  *
- * @Param: null
- * @return
+ * @author Administrator
  */
 @Configuration
 @EnableWebSecurity
@@ -26,7 +25,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/**").fullyAuthenticated().and().httpBasic();
     }
-    //不定义没有password grant_type
+
+    /**
+     * @return org.springframework.security.authentication.AuthenticationManager
+     * @description :  不定义没有password grant_type
+     * @author : HPC
+     * @date : 2019/7/2 16:24
+     */
     @Override
     @Bean
     @Primary

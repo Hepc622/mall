@@ -15,18 +15,25 @@ import java.util.Collection;
  * create by: HPC
  * description: 权限决策管理
  * create time: 2019/5/21
- *
- * @Param: null
- * @return
+ * @author HPC
  */
 @Service
 @Primary
 public class MallAccessDecisionManager implements AccessDecisionManager {
 
-    // decide 方法是判定是否拥有权限的决策方法，
-    //authentication 是释CustomUserService中循环添加到 GrantedAuthority 对象中的权限信息集合.
-    //object 包含客户端发起的请求的requset信息，可转换为 HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
-    //configAttributes 为MyInvocationSecurityMetadataSource的getAttributes(Object object)这个方法返回的结果，此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
+    /**
+     * @description :
+     *  decide 方法是判定是否拥有权限的决策方法，
+     *  authentication 是释CustomUserService中循环添加到 GrantedAuthority 对象中的权限信息集合.
+     *  object 包含客户端发起的请求的requset信息，可转换为 HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
+     *  configAttributes 为MyInvocationSecurityMetadataSource的getAttributes(Object object)这个方法返回的结果，此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
+     * @author : HPC
+     * @date : 2019/7/2 16:21
+     * @param authentication :
+     * @param object :
+     * @param configAttributes :
+     * @return void
+     */
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
 
@@ -36,7 +43,8 @@ public class MallAccessDecisionManager implements AccessDecisionManager {
 
         for (ConfigAttribute configAttribute : configAttributes) {
             String needRole = configAttribute.getAttribute();
-            for (GrantedAuthority ga : authentication.getAuthorities()) {//authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
+            //authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
+            for (GrantedAuthority ga : authentication.getAuthorities()) {
                 if (needRole.trim().equals(ga.getAuthority())) {
                     return;
                 }
