@@ -26,7 +26,7 @@
         <module>mall-service-user-common</module>
         <module>mall-service-rabbit-common</module>
         <module>mall-service-order-common</module>
-        <module>mall-auth-common</module>
+        <module>mall-service-auth-common</module>
     </modules>
 
 
