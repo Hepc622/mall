@@ -1,6 +1,6 @@
-package com.github.mall.user.rpc;
+package com.github.mall.product.rpc;
 
-import com.github.mall.user.rpc.back.ServiceProductApiFallBack;
+import com.github.mall.product.rpc.back.ServiceProductApiFallBack;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author HPC
  * @create 2019-04-22
  */
-@FeignClient(value = "SERVICE-PRODUCT", path = "/user/rpc", fallback = ServiceProductApiFallBack.class)
+@FeignClient(value = "SERVICE-PRODUCT", path = "/rpc/product", fallback = ServiceProductApiFallBack.class)
 @Service
 public interface ServiceProductApi {
     @PostMapping("/getProduct")

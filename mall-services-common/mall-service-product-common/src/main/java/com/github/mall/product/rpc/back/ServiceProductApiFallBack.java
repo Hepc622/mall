@@ -1,6 +1,6 @@
-package com.github.mall.user.rpc.back;
+package com.github.mall.product.rpc.back;
 
-import com.github.mall.user.rpc.ServiceProductApi;
+import com.github.mall.product.rpc.ServiceProductApi;
 import org.springframework.stereotype.Service;
 
 /**

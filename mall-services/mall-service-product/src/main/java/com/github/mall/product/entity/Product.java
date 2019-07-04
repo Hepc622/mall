@@ -1,4 +1,4 @@
-package com.github.mall.user.entity;
+package com.github.mall.product.entity;
 
 import java.math.BigDecimal;
 import java.io.Serializable;

@@ -1,6 +1,6 @@
-package com.github.mall.user.mapper;
+package com.github.mall.product.mapper;
 
-import com.github.mall.user.entity.Product;
+import com.github.mall.product.entity.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

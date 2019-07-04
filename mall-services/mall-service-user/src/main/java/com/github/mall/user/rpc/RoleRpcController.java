@@ -14,7 +14,7 @@ import java.util.List;
  * @description： 角色获取RPC
  */
 @RestController
-@RequestMapping("/role/rpc")
+@RequestMapping("/rpc/role")
 @Transactional(rollbackFor = Exception.class)
 public class RoleRpcController implements IRoleRpc {
 

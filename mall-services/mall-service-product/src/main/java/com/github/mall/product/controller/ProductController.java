@@ -1,6 +1,6 @@
-package com.github.mall.user.controller;
+package com.github.mall.product.controller;
 
-import com.github.mall.user.service.IProductService;
+import com.github.mall.product.service.IProductService;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

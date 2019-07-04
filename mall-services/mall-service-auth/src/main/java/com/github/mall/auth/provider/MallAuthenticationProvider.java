@@ -29,7 +29,9 @@ public class MallAuthenticationProvider implements AuthenticationProvider {
         /*获取用户信息*/
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.toString());
         if (userDetails != null) {
-            return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
+            authenticationToken.setDetails(userDetails);
+            return authenticationToken;
         }
         return null;
     }

@@ -22,18 +22,18 @@ import java.io.Serializable;
 public class PageOutVo<T> implements Serializable{
     private static final long serialVersionUID = -8201439966090055097L;
 
-    /*当前页数*/
+    /**当前页数*/
     private Integer pageNo;
 
-    /*页面数据大小*/
+    /**页面数据大小*/
     private Integer pageSize;
 
-    /*总条数*/
+    /**总条数*/
     private Long total;
 
-    /*总页数*/
+    /**总页数*/
     private Long pages;
 
-    /*返回的数据*/
+    /**返回的数据*/
     private T list;
 }

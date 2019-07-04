@@ -5,7 +5,6 @@ import com.github.mall.user.model.Permission;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.mall.user.vo.RolePermissionOutVo;
 
-import java.awt.image.RenderedImage;
 import java.util.List;
 
 /**

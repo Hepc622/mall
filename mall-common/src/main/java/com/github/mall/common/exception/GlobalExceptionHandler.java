@@ -27,9 +27,9 @@ public class GlobalExceptionHandler {
         log.info("=====================全局异常信息捕获=======================");
         log.info(ex.getMessage(), ex);
         if (ex instanceof AccessDeniedException) {
-            return Result.noRight(ex);
+            return Result.noRight(ex.getMessage());
         } else {
-            return Result.fail(ex);
+            return Result.fail(ex.getMessage(), ex);
         }
     }
 }

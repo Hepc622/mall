@@ -7,6 +7,7 @@ import org.springframework.security.access.intercept.AbstractSecurityInterceptor
 import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.*;
@@ -19,7 +20,7 @@ import java.io.IOException;
  *
  * @author Administrator
  */
-@Service
+@Component
 public class MallFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
 
 

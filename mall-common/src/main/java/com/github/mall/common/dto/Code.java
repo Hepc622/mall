@@ -8,11 +8,11 @@ package com.github.mall.common.dto;
  * @create 2019-01-31
  */
 public class Code {
-    //0开头的是请求成功
+    /**0开头的是请求成功*/
     public static final String SUCCESS = "0000";
-    //1开头的请求失败
+    /**1开头的请求失败*/
     public static final String FAIL = "1000";
-    //2开头的参数错误
+    /**2开头的参数错误*/
     public static final String PARAM = "2000";
 
     /*修改密码成功*/

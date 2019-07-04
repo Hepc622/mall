@@ -16,7 +16,7 @@ import java.util.List;
  * @description： 权限内部调用
  */
 @RestController
-@RequestMapping("/permission/rpc")
+@RequestMapping("/rpc/permission")
 @Transactional(rollbackFor = Exception.class)
 public class PermissionRpcController implements IPermissionRpc {
 

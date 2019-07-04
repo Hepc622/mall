@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2019-04-22
  */
 @RestController
-@RequestMapping("/user/rpc")
+@RequestMapping("/rpc/user")
 @Transactional(rollbackFor = Exception.class)
 public class UserRpcController implements IUserRpc {
 

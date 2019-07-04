@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date ：Created in 2019-05-22
  * @description： 用户内部调用
  */
-@FeignClient(value = "SERVICE-USER", path = "/user/rpc", fallback = UserRpcImpl.class)
+@FeignClient(value = "SERVICE-USER", path = "/rpc/user", fallback = UserRpcImpl.class)
 public interface IUserRpc {
     /**
      * create by: HPC
      * description: 通过参数获取用户
      * create time: 2019/5/22
-     *
-     * @return
      */
     @RequestMapping(value = "/getUserWithParam/{param}", method = {RequestMethod.POST})
     User getUserWithParam(@PathVariable("param") String param);

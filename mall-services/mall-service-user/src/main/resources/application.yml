@@ -71,3 +71,4 @@ snowflake:
   workerId: 0
 #  数据中心ID(0~31)
   datacenterId: 1
+

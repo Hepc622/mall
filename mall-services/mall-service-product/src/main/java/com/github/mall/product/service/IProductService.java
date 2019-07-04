@@ -1,6 +1,6 @@
-package com.github.mall.user.service;
+package com.github.mall.product.service;
 
-import com.github.mall.user.entity.Product;
+import com.github.mall.product.entity.Product;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

@@ -1,8 +1,8 @@
-package com.github.mall.user.service.impl;
+package com.github.mall.product.service.impl;
 
-import com.github.mall.user.entity.Product;
-import com.github.mall.user.mapper.ProductMapper;
-import com.github.mall.user.service.IProductService;
+import com.github.mall.product.entity.Product;
+import com.github.mall.product.mapper.ProductMapper;
+import com.github.mall.product.service.IProductService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

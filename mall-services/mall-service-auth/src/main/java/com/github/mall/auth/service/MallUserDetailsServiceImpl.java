@@ -14,7 +14,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,7 +43,8 @@ public class MallUserDetailsServiceImpl implements UserDetailsService {
             //手机号码登录
             if (MallUtils.isPhoneLegal(username, true)) {
                 userDetails = loginWithPhoneNo(username);
-            } else if (MallUtils.isEmail(username)) {//邮箱登录
+                //邮箱登录
+            } else if (MallUtils.isEmail(username)) {
                 userDetails = loginWithEmail(username);
             } else {//openId登录
                 userDetails = loginWithOpenId(username);
