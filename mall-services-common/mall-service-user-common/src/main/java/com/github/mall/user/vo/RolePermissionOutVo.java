@@ -10,9 +10,9 @@ import lombok.Data;
  */
 @Data
 public class RolePermissionOutVo extends RolePermission {
-    /*角色名称*/
+    /**角色名称*/
     private String roleName;
 
-    /*资源路径*/
+    /**资源路径*/
     private String url;
 }

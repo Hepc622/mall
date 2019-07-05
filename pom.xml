@@ -61,19 +61,19 @@
         </dependency>
         <!-- feign end-->
 
-        <!--mybatis start 配置客户端-->
+        <!--config start 配置客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
-        <!--mybatis end 配置客户端-->
+        <!--config end 配置客户端-->
 
-        <!--链路追踪 start-->
+        <!--链路追踪 zipkin start-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
-        <!--链路追踪 end-->
+        <!--链路追踪 zipkin end-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>

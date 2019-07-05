@@ -10,4 +10,5 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mall-zipkin</artifactId>
+    <description>链路模块</description>
 </project>

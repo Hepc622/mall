@@ -1,17 +1,17 @@
 #spring:
 #  application:
-#    name: zipkin
+#    name: monitor
 #  cloud:
-#    mybatis:
+#    config:
+#      name: monitor
 #      label: master
-#      profile: pro
+#      profile: dev
 #      discovery:
 #        enabled: true
 #        service-id: config-server
-#
-## 注册到eureka
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka
+# 注册到eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
 ##      defaultZone: http://localhost:8761/eureka,http://192.168.0.2:8761/eureka,http://192.168.0.3:8761/eureka

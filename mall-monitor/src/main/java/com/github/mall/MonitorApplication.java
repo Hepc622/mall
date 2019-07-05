@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * 描述:
- * 用户模块
+ * 服务监控管理服务
  *
  * @author HPC
  * @create 2019-04-22

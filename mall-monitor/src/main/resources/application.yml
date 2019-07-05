@@ -1,0 +1,21 @@
+
+server:
+  port: 8769
+# 开发环境
+#---
+# eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+# 测试环境
+---
+
+
+# 公测环境
+---
+
+
+# 生产环境
+---
