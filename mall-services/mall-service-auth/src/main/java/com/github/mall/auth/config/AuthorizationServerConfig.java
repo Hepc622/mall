@@ -1,8 +1,10 @@
 package com.github.mall.auth.config;
 
+import com.github.mall.auth.service.MallRedisTokenStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -25,6 +27,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private ClientDetailsService clientDetails;
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private MallRedisTokenStore redisTokenStore;
+
+
     /**
      * @param security :
      * @return void
@@ -35,6 +44,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
         security.checkTokenAccess("isAuthenticated()");
+        security.tokenKeyAccess("permitAll()");
         security.allowFormAuthenticationForClients();
     }
 
@@ -60,5 +70,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager);
+        endpoints.setClientDetailsService(clientDetails);
+        endpoints.userDetailsService(userDetailsService);
+        endpoints.tokenStore(redisTokenStore);
     }
 }

@@ -25,10 +25,12 @@ public class GlobalExceptionHandler {
     public Result defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         log.info("=====================全局异常信息捕获=======================");
-        log.info(ex.getMessage(), ex);
+        /*判断是否为没有权限异常*/
         if (ex instanceof AccessDeniedException) {
+            log.error("没有操作权限:"+ex.getMessage(),ex);
             return Result.noRight(ex.getMessage());
         } else {
+            log.error("系统服务异常:"+ex.getMessage(),ex);
             return Result.fail(ex.getMessage(), ex);
         }
     }

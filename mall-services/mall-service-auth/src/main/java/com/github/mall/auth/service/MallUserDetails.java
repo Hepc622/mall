@@ -20,8 +20,8 @@ class MallUserDetails extends User implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
     private String password;
     private String username;
-    private boolean accountNonExpired;
-    private boolean credentialsNonExpired;
-    private boolean enabled;
-    private boolean accountNonLocked;
+    private boolean accountNonExpired = true;
+    private boolean credentialsNonExpired = true;
+    private boolean enabled = true;
+    private boolean accountNonLocked = true;
 }

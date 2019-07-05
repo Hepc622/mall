@@ -3,16 +3,14 @@ package com.github.mall.auth.config;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author ：HPC
@@ -52,6 +50,7 @@ public class OauthClientConfig {
                 details.setClientSecret(clientInfo.getSecret());
                 details.setAccessTokenValiditySeconds(clientInfo.getAccessTokenValiditySeconds());
                 details.setRefreshTokenValiditySeconds(clientInfo.getRefreshTokenValiditySeconds());
+                details.setAutoApproveScopes(Arrays.asList(clientInfo.getScopes().split(",")));
                 /*添加到缓存中*/
                 cacheClient.put(clientInfo.getClient(), details);
             }
