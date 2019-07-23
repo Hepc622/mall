@@ -75,4 +75,13 @@ oauths:
       scopes: "web"
       grantTypes: "password,authorization_code,refresh_token"
 
+#获取code
+# http://localhost:8764/oauth/authorize?client_id=phone&response_type=code&redirect_uri=http://www.baidu.com
+# 提示登录账户密码，成功之后携带code调转到指定的url
+#获取token
+# 使用 clientId+secret base64生产验证头
+# Authorization Bearer cGhvbmUlM0FtYWxsX3NlY3JldA==
+# 请求 localhost:8764/oauth/token
+# 携带参数 code grant_type client_id client_secret redirect_uri
+
 

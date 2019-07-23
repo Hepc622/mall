@@ -12,6 +12,7 @@ import java.util.Map;
  */
 @Service
 public class AuthRpcImpl implements IAuthRpc {
+    @Override
     public Map<String, ?> checkToken(String value) {
         return null;
     }

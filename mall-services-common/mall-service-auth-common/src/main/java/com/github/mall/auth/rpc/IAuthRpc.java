@@ -16,6 +16,11 @@ import java.util.Map;
 @FeignClient(name = "SERVICE-AUTH", fallback = AuthRpcImpl.class)
 public interface IAuthRpc {
 
+    /**
+     * 校验token
+     * @param value
+     * @return
+     */
     @RequestMapping(value = "/oauth/check_token", method = {RequestMethod.POST})
     Map<String, ?> checkToken(@RequestParam("token") String value);
 }
