@@ -23,55 +23,37 @@ public class Result<T> implements Serializable {
         this.data = data;
     }
 
-    public static <T> Result<T> success(String msg) {
-        return new Result<>(Code.SUCCESS, msg, null);
-    }
-
 
     public static <T> Result<T> success() {
-        return new Result<>(Code.SUCCESS, "操作成功", null);
+        return new Result<>(Code.SUCCESS.getKey(), Code.SUCCESS.getValue(), null);
     }
 
     public static <T> Result<T> success(T obj) {
-        return new Result<>(Code.SUCCESS, "操作成功", obj);
+        return new Result<>(Code.SUCCESS.getKey(), Code.SUCCESS.getValue(), obj);
     }
 
-    public static <T> Result<T> success(String code, String msg) {
-        return new Result<>(code, msg, null);
+    public static <T> Result<T> success(Code code) {
+        return new Result<>(code.getKey(), code.getValue(), null);
     }
 
-    public static <T> Result<T> success(String code, String msg, T obj) {
-        return new Result<>(code, msg, obj);
+    public static <T> Result<T> success(Code code, T obj) {
+        return new Result<>(code.getKey(), code.getValue(), obj);
     }
 
     public static <T> Result<T> fail() {
-        return new Result<>(Code.FAIL, "操作失败", null);
+        return new Result<>(Code.FAIL.getKey(), Code.FAIL.getValue(), null);
     }
 
     public static <T> Result<T> fail(T obj) {
-        return new Result<>(Code.FAIL, "操作失败", obj);
+        return new Result<>(Code.FAIL.getKey(), Code.FAIL.getValue(), obj);
     }
 
-    public static <T> Result<T> fail(String msg, T obj) {
-        return new Result<>(Code.FAIL, msg, obj);
+    public static <T> Result<T> fail(Code code) {
+        return new Result<>(code.getKey(), code.getValue(), null);
     }
 
-    public static <T> Result<T> fail(String msg) {
-        return new Result<>(Code.FAIL, msg, null);
+    public static <T> Result<T> fail(Code code, T obj) {
+        return new Result<>(code.getKey(), code.getValue(), obj);
     }
-
-    public static <T> Result<T> fail(String code, String msg) {
-        return new Result<>(code, msg, null);
-    }
-
-
-    public static <T> Result<T> fail(String code, String msg, T obj) {
-        return new Result<>(code, msg, obj);
-    }
-
-    public static <T> Result<T> noRight(T e) {
-        return new Result<>(Code.NO_RIGHT, "没有操作权限", e);
-    }
-
 
 }

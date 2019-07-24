@@ -1,12 +1,9 @@
 package com.github.mall.getway.filters;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.mall.auth.rpc.IAuthRpc;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
-import org.springframework.cloud.gateway.filter.GlobalFilter;
-import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -16,7 +13,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
@@ -26,7 +22,7 @@ import java.util.Map;
  */
 @Slf4j
 @Component
-public class AccessTokenFilter implements GlobalFilter, Ordered {
+public class AccessTokenFilter extends AbstractGlobalFilter {
 
     /**
      * oauth
@@ -64,20 +60,20 @@ public class AccessTokenFilter implements GlobalFilter, Ordered {
         String accessToken = request.getHeaders().getFirst(ACCESS_TOKEN);
         if (StringUtils.isEmpty(accessToken)) {
             log.info("access_token请求头为空");
-            byte[] bits = setResponseBody(response, "1001", "access_token请求头为空", "", HttpStatus.UNAUTHORIZED);
+            byte[] bits = setResponseBody(response, "1001", "请求头没有access_token", null);
             DataBuffer buffer = response.bufferFactory().wrap(bits);
             return response.writeWith(Mono.just(buffer));
+
         } else {
             /*包含token就去校验token是否有效*/
             Map<String, ?> checkToken = iAuthRpc.checkToken(accessToken);
             if (!Boolean.parseBoolean(String.valueOf(checkToken.get(ACTIVE)))) {
                 /*token无效*/
                 log.info("access_token无效");
-                byte[] bits = setResponseBody(response, "1002", "access_token无效", "", HttpStatus.UNAUTHORIZED);
+                byte[] bits = setResponseBody(response, "1002", "access_token失效", null);
                 DataBuffer buffer = response.bufferFactory().wrap(bits);
                 return response.writeWith(Mono.just(buffer));
             }
-
         }
 
         return chain.filter(exchange);
@@ -99,20 +95,5 @@ public class AccessTokenFilter implements GlobalFilter, Ordered {
         return -1;
     }
 
-    /**
-     * @author : HPC
-     * @description : 设置响应体
-     * @date : 2019/7/4 14:48
-     */
-    private byte[] setResponseBody(ServerHttpResponse response, String code, String msg, Object data, HttpStatus statusCode) {
-        JSONObject message = new JSONObject();
-        message.put("code", code);
-        message.put("msg", msg);
-        message.put("data", data);
 
-        response.setStatusCode(statusCode);
-        //指定编码，否则在浏览器中会中文乱码
-        response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
-        return message.toJSONString().getBytes(StandardCharsets.UTF_8);
-    }
 }

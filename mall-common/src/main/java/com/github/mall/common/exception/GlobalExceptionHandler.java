@@ -1,5 +1,6 @@
 package com.github.mall.common.exception;
 
+import com.github.mall.common.dto.Code;
 import com.github.mall.common.dto.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -27,11 +28,11 @@ public class GlobalExceptionHandler {
         log.info("=====================全局异常信息捕获=======================");
         /*判断是否为没有权限异常*/
         if (ex instanceof AccessDeniedException) {
-            log.error("没有操作权限:"+ex.getMessage(),ex);
-            return Result.noRight(ex.getMessage());
+            log.error("没有操作权限:" + ex.getMessage(), ex);
+            return Result.fail(Code.NO_RIGHT, ex.getMessage());
         } else {
-            log.error("系统服务异常:"+ex.getMessage(),ex);
-            return Result.fail(ex.getMessage(), ex);
+            log.error("系统服务异常:" + ex.getMessage(), ex);
+            return Result.fail(Code.FAIL, ex);
         }
     }
 }
