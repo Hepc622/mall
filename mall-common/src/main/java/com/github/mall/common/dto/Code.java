@@ -27,7 +27,7 @@ public enum Code {
 
     NO_RIGHT("1004", "没有操作权限"),
 
-    BLACK_IP("1005", "你以被禁止访问"),
+    BLACK_IP("1005", "你已被禁止访问"),
 
     RECOMMIT("1006", "请求过于频繁"),
 
