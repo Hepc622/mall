@@ -23,8 +23,8 @@ import java.util.List;
  * create time: 2019/5/21
  * @author HPC
  */
-@Service
-@Primary
+//@Service
+//@Primary
 public class MallInvocationSecurityMetadataSourceService implements
         FilterInvocationSecurityMetadataSource {
 

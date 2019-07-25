@@ -17,8 +17,8 @@ import java.util.Collection;
  * create time: 2019/5/21
  * @author HPC
  */
-@Service
-@Primary
+//@Service
+//@Primary
 public class MallAccessDecisionManager implements AccessDecisionManager {
 
     /**

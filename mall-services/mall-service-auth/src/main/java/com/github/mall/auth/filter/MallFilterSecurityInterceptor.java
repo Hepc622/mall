@@ -20,7 +20,7 @@ import java.io.IOException;
  *
  * @author Administrator
  */
-@Component
+//@Component
 public class MallFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
 
 

@@ -9,6 +9,9 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
 
+spring:
+  application:
+    name: monitor
 # 测试环境
 ---
 

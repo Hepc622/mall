@@ -48,15 +48,15 @@ public class AccessTokenFilter extends AbstractGlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpResponse response = exchange.getResponse();
+        ServerHttpRequest request = exchange.getRequest();
 
-        String url = exchange.getRequest().getURI().toString();
+        String url = request.getURI().toString();
         /*验证是否包含oauth,包含请求的全部放行*/
         if (isContainOauthUrl(url)) {
             return chain.filter(exchange);
         }
 
         /*获取请求的token*/
-        ServerHttpRequest request = exchange.getRequest();
         String accessToken = request.getHeaders().getFirst(ACCESS_TOKEN);
         if (StringUtils.isEmpty(accessToken)) {
             log.info("access_token请求头为空");
@@ -65,6 +65,8 @@ public class AccessTokenFilter extends AbstractGlobalFilter {
             return response.writeWith(Mono.just(buffer));
 
         } else {
+            /*获取实际请求url*/
+
             /*包含token就去校验token是否有效*/
             Map<String, ?> checkToken = iAuthRpc.checkToken(accessToken);
             if (!Boolean.parseBoolean(String.valueOf(checkToken.get(ACTIVE)))) {
