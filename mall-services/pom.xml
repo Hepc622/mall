@@ -29,16 +29,19 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <!--mybatis end -->
-        <!--fescar start-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-alibaba-seata</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.seata</groupId>-->
-<!--            <artifactId>seata-spring</artifactId>-->
-<!--        </dependency>-->
-        <!--fescar end-->
+
+        <!--lcn分布式事务 start-->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+        </dependency>
+        <!--lcn分布式事务 end-->
+
         <dependency>
             <groupId>org.github</groupId>
             <artifactId>mall-common</artifactId>

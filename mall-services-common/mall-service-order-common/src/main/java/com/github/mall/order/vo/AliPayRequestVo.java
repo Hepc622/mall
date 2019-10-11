@@ -10,18 +10,18 @@ import lombok.Data;
 @Data
 public class AliPayRequestVo {
 
-    /*商户订单号，商户网站订单系统中唯一订单号*/
+    /**商户订单号，商户网站订单系统中唯一订单号*/
     private String out_trade_no;
 
-    /*支付金额*/
+    /**支付金额*/
     private String total_amount;
 
-    /*订单名称*/
+    /**订单名称*/
     private String subject;
 
-    /*商品描述*/
+    /**商品描述*/
     private String body;
 
-    /*支付类型 0 web 1 app 2 小程序 3 生活号 4 第三方服务商*/
+    /**支付类型 0 web 1 app 2 小程序 3 生活号 4 第三方服务商*/
     private Integer payType;
 }

@@ -17,17 +17,9 @@ public class ThreadUtils {
      */
     public static Executor newFixedThreadPool(int corePoolSize) {
         return new ThreadPoolExecutor(corePoolSize, 200, 60,
-                TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
-                new ThreadFactory() {
-                    @Override
-                    public Thread newThread(Runnable r) {
-                        return new Thread(r, "mall-pool-" + r.hashCode());
-                    }
-                },
-                new RejectedExecutionHandler() {
-                    @Override
-                    public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
-                    }
+                TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
+                r -> new Thread(r, "mall-pool-" + r.hashCode()),
+                (r, executor) -> {
                 });
     }
 }

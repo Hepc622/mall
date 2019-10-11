@@ -42,9 +42,9 @@
         <hystrix-dashboard.version>1.4.4.RELEASE</hystrix-dashboard.version>
         <turbine.version>1.4.4.RELEASE</turbine.version>
         <hystrix.version>1.4.4.RELEASE</hystrix.version>
-        <seata.version>0.5.0</seata.version>
         <okhttp.version>3.10.0</okhttp.version>
         <dom4j.version>1.6.1</dom4j.version>
+        <txlcn.version>5.0.2.RELEASE</txlcn.version>
     </properties>
     <dependencies>
         <!--eureka client start -->
@@ -113,18 +113,25 @@
             </dependency>
             <!--lombok end-->
 
-            <!--分布式事务 fescar start-->
+            <!--lcn分布式事务 start-->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-seata</artifactId>
-                <version>0.9.0.RELEASE</version>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tc</artifactId>
+                <version>${txlcn.version}</version>
             </dependency>
+
             <dependency>
-                <groupId>io.seata</groupId>
-                <artifactId>seata-spring</artifactId>
-                <version>${seata.version}</version>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tm</artifactId>
+                <version>${txlcn.version}</version>
             </dependency>
-            <!--分布式事务 fescar end-->
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-txmsg-netty</artifactId>
+                <version>${txlcn.version}</version>
+            </dependency>
+            <!--lcn分布式事务 end-->
 
             <!--mybatis-plus start -->
             <dependency>

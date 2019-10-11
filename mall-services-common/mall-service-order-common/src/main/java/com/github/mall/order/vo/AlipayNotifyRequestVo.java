@@ -9,10 +9,10 @@ import lombok.Data;
  */
 @Data
 public class AlipayNotifyRequestVo {
-    /*商户订单号*/
+    /**商户订单号*/
     private String out_trade_no;
-    /*支付宝交易号*/
+    /**支付宝交易号*/
     private String trade_no;
-    /*交易状态*/
+    /**交易状态*/
     private String trade_status;
 }

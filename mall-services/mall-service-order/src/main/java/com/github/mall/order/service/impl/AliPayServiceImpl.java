@@ -45,6 +45,7 @@ public class AliPayServiceImpl implements AliPayService {
      * description: 统一收单下单并支付页面接口
      * create time: 2019/6/25
      */
+    @Override
     public Result<AliPayResponseVo> preparePay(AliPayRequestVo vo, HttpServletResponse response) {
         /*支付响应体*/
         AliPayResponseVo payResponseVo = new AliPayResponseVo();
@@ -114,6 +115,7 @@ public class AliPayServiceImpl implements AliPayService {
      * description: 统一收单交易退款接口
      * create time: 2019/6/25
      */
+    @Override
     public Result refund(Object obj) {
         return null;
     }
@@ -123,6 +125,7 @@ public class AliPayServiceImpl implements AliPayService {
      * description: 统一收单交易退款查询接口
      * create time: 2019/6/25
      */
+    @Override
     public Result refundQuery(Object obj) {
         return null;
     }
@@ -135,6 +138,7 @@ public class AliPayServiceImpl implements AliPayService {
      * @return
      * @Param: null
      */
+    @Override
     public Result close(Object obj) {
         return null;
     }
@@ -147,6 +151,7 @@ public class AliPayServiceImpl implements AliPayService {
      * @return
      * @Param: null
      */
+    @Override
     public String notify(HttpServletRequest request) {
         try {
             Map<String, String> params = new HashMap<String, String>();
@@ -174,8 +179,9 @@ public class AliPayServiceImpl implements AliPayService {
             3、校验通知中的seller_id（或者seller_email) 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）
             4、验证app_id是否为该商户本身。
             */
+            //调用SDK验证签名
             boolean signVerified = AlipaySignature.rsaCheckV1(params, alipayConfig.getAlipay_public_key(),
-                    alipayConfig.getCharset(), alipayConfig.getSign_type()); //调用SDK验证签名
+                    alipayConfig.getCharset(), alipayConfig.getSign_type());
 
             //验证成功
             if (signVerified) {

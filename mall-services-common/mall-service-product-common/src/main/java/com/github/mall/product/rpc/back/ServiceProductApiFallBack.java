@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServiceProductApiFallBack implements ServiceProductApi {
 
+    @Override
     public void getProduct() {
 
     }

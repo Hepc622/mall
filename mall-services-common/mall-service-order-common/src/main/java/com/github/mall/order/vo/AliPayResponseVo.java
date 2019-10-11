@@ -10,10 +10,10 @@ import lombok.Data;
 @Data
 public class AliPayResponseVo {
 
-    /*网页支付响应体*/
+    /**网页支付响应体*/
     private String webPayBody;
 
-    /*app支付响应体*/
+    /**app支付响应体*/
     private String appPayBody;
 
 

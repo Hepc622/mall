@@ -49,9 +49,12 @@ public class RabbitMqConfig {
         return connectionFactory;
     }
 
+    /**
+     *
+     * 必须是prototype类型RabbitTemplate只允许设置一个callback方法,所以使用原始模式
+     */
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    //必须是prototype类型RabbitTemplate只允许设置一个callback方法,所以使用原始模式
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         template.setReturnCallback(this::returnCallback);
@@ -60,7 +63,9 @@ public class RabbitMqConfig {
         return template;
     }
 
-    //到达交换机成功回调
+    /**
+     * 到达交换机成功回调
+     */
     private void confirmCallback(CorrelationData correlationData, boolean ack, String s) {
         long id = Long.parseLong(correlationData.getId());
         /*成功到达交换机*/
